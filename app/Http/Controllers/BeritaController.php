@@ -14,7 +14,7 @@ class BeritaController extends Controller
     //
     public function index(Request $req)
 	{
-        $data = Berita::where(function($q) use ($req){
+        $data = Berita::with('kategori')->where(function($q) use ($req){
             $q->where('berita_judul', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
@@ -45,6 +45,7 @@ class BeritaController extends Controller
                 $data = Berita::findOrFail($req->get('ID'));
                 $data->berita_judul = $req->get('berita_judul');
                 $data->berita_isi = $req->get('berita_isi');
+                $data->kategori_berita_id = $req->get('kategori_berita_id');
 
                 if($req->file('berita_gambar')){
                     File::delete(public_path($data->berita_gambar));
@@ -69,6 +70,7 @@ class BeritaController extends Controller
                 $data->berita_isi = $req->get('berita_isi');
                 $data->berita_gambar = '/uploads/berita/'.$nama_file;
                 $data->berita_author = Auth::user()->pengguna_nama;
+                $data->kategori_berita_id = $req->get('kategori_berita_id');
                 $data->save();
             }
             return redirect($req->get('redirect')? $req->get('redirect'): 'berita');

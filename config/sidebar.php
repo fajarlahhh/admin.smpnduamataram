@@ -38,6 +38,9 @@ return [
 			'url' => '/kategoriberita',
 			'title' => 'Kategori Berita'
         ],[
+			'url' => '/kategorikegiatan',
+			'title' => 'Kategori Kegiatan'
+        ],[
 			'url' => '/mapel',
 			'title' => 'Mata Pelajaran'
         ]]
@@ -61,9 +64,13 @@ return [
                 'title' => 'Kelas VIII'
             ],[
                 'url' => '/kelassembilan',
-                'title' => 'Guru IX'
+                'title' => 'Kelas IX'
             ]]
         ]]
+	],[
+		'icon' => 'fas fa-snowboarding',
+		'title' => 'Kegiatan',
+		'url' => '/kegiatan'
 	],[
 		'icon' => 'fas fa-medal',
 		'title' => 'Prestasi',
