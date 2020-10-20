@@ -53,24 +53,21 @@ return [
             'title' => 'Tenaga Pendidik',
             'url' => '/tenagapendidik'
         ],[
-            'title' => 'Peserta Didik',
-            'url' => '#',
-            'caret' => true,
-            'sub_menu' => [[
-                'url' => '/kelastujuh',
-                'title' => 'Kelas VII'
-            ],[
-                'url' => '/kelasdelapan',
-                'title' => 'Kelas VIII'
-            ],[
-                'url' => '/kelassembilan',
-                'title' => 'Kelas IX'
-            ]]
+            'title' => 'Peserta Pendidik',
+            'url' => '/pesertadidik'
         ]]
 	],[
 		'icon' => 'fas fa-snowboarding',
 		'title' => 'Kegiatan',
 		'url' => '/kegiatan'
+	],[
+		'icon' => 'fas fa-id-card',
+		'title' => 'Kontak',
+		'url' => '/kontak'
+	],[
+		'icon' => 'fas fa-users',
+		'title' => 'Pengguna',
+		'url' => '/pengguna'
 	],[
 		'icon' => 'fas fa-medal',
 		'title' => 'Prestasi',
@@ -103,19 +100,8 @@ return [
 			'title' => 'Kalenderakademik'
         ]]
 	],[
-		'icon' => 'fas fa-cog',
-		'title' => 'Setup',
-		'url' => '#',
-		'caret' => true,
-		'id' => 'setup',
-		'sub_menu' => [[
-			'url' => '/kontak',
-			'id' => 'kontak',
-			'title' => 'Kontak'
-        ],[
-			'url' => '/pengguna',
-			'id' => 'pengguna',
-			'title' => 'Pengguna'
-        ]]
+		'icon' => 'fas fa-video',
+		'title' => 'Video',
+		'url' => '/video'
 	]]
 ];

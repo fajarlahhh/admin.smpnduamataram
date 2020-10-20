@@ -34,10 +34,10 @@
                                         <label class="control-label">Gambar</label>
                                         <input class="form-control" type="file" name="gallery_gambar" accept="image/x-png,image/gif,image/jpeg" {{ $aksi == "Edit"? "": "required" }} autocomplete="off" />
                                     </div>
-                                    <div class="form-check">
+                                    {{-- <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1" name="sembunyikan" value="1">
                                         <label class="form-check-label" for="exampleCheck1">Sembunyikan</label>
-                                    </div>
+                                    </div> --}}
                                     @include('includes.component.error')
                                 </div>
                             </div>

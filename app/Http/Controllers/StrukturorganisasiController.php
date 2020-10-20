@@ -57,6 +57,7 @@ class StrukturorganisasiController extends Controller
                 $data->struktur_organisasi_jabatan = $req->get('struktur_organisasi_jabatan');
                 $data->struktur_organisasi_pejabat = $req->get('struktur_organisasi_pejabat');
                 $data->struktur_organisasi_pejabat_nip = $req->get('struktur_organisasi_pejabat_nip');
+                $data->struktur_organisasi_urutan = $req->get('struktur_organisasi_urutan');
 
                 if($req->file('struktur_organisasi_foto')){
                     File::delete(public_path($data->struktur_organisasi_foto));
@@ -80,6 +81,7 @@ class StrukturorganisasiController extends Controller
                 $data->struktur_organisasi_jabatan = $req->get('struktur_organisasi_jabatan');
                 $data->struktur_organisasi_pejabat = $req->get('struktur_organisasi_pejabat');
                 $data->struktur_organisasi_pejabat_nip = $req->get('struktur_organisasi_pejabat_nip');
+                $data->struktur_organisasi_urutan = $req->get('struktur_organisasi_urutan');
                 $data->struktur_organisasi_foto = '/uploads/strukturorganisasi/'.$nama_file;
                 $data->save();
             }

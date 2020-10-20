@@ -55,6 +55,10 @@
                                         <input class="form-control" type="text" name="struktur_organisasi_pejabat_nip" value="{{ old('struktur_organisasi_pejabat_nip')? old('struktur_organisasi_pejabat_nip'): ($aksi == "Edit"? $data->struktur_organisasi_pejabat_nip: "") }}" autocomplete="off" id="struktur_organisasi_pejabat_nip" data-parsley-minlength="2" required />
                                     </div>
                                     <div class="form-group">
+                                        <label class="control-label">Urutan</label>
+                                        <input class="form-control" type="number" name="struktur_organisasi_urutan" value="{{ old('struktur_organisasi_urutan')? old('struktur_organisasi_urutan'): ($aksi == "Edit"? $data->struktur_organisasi_urutan: "") }}" autocomplete="off" id="struktur_organisasi_urutan" data-parsley-minlength="2" required />
+                                    </div>
+                                    <div class="form-group">
                                         <label class="control-label">Foto</label>
                                         <input class="form-control" type="file" name="struktur_organisasi_foto" accept="image/x-png,image/gif,image/jpeg" {{ $aksi == "Edit"? "": "required" }} autocomplete="off" />
                                     </div>

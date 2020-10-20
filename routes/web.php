@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MapelController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\KegiatanController;
@@ -12,6 +14,7 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\VisimisiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TatausahaController;
+use App\Http\Controllers\PesertadidikController;
 use App\Http\Controllers\KepalasekolahController;
 use App\Http\Controllers\KomitesekolahController;
 use App\Http\Controllers\KategoriberitaController;
@@ -79,12 +82,27 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/hapus', [BeritaController::class, 'hapus']);
     });
 
+    Route::prefix('video')->group(function () {
+        Route::get('/', [VideoController::class, 'index'])->name('video');
+        Route::get('/tambah', [VideoController::class, 'tambah'])->name('video.tambah');
+        Route::post('/simpan', [VideoController::class, 'simpan'])->name('video.simpan');
+        Route::delete('/hapus', [VideoController::class, 'hapus']);
+    });
+
     Route::prefix('kegiatan')->group(function () {
         Route::get('/', [KegiatanController::class, 'index'])->name('kegiatan');
         Route::get('/tambah', [KegiatanController::class, 'tambah'])->name('kegiatan.tambah');
         Route::get('/edit', [KegiatanController::class, 'edit'])->name('kegiatan.edit');
         Route::post('/simpan', [KegiatanController::class, 'simpan'])->name('kegiatan.simpan');
         Route::delete('/hapus', [KegiatanController::class, 'hapus']);
+    });
+
+    Route::prefix('pesertadidik')->group(function () {
+        Route::get('/', [PesertadidikController::class, 'index'])->name('pesertadidik');
+        Route::get('/tambah', [PesertadidikController::class, 'tambah'])->name('pesertadidik.tambah');
+        Route::get('/edit', [PesertadidikController::class, 'edit'])->name('pesertadidik.edit');
+        Route::post('/simpan', [PesertadidikController::class, 'simpan'])->name('pesertadidik.simpan');
+        Route::delete('/hapus', [PesertadidikController::class, 'hapus']);
     });
 
     Route::prefix('carousel')->group(function () {
@@ -157,5 +175,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('komitesekolah')->group(function () {
         Route::get('/', [KomitesekolahController::class, 'index'])->name('komitesekolah');
         Route::post('/simpan', [KomitesekolahController::class, 'simpan'])->name('komitesekolah.simpan');
+    });
+
+    Route::prefix('kontak')->group(function () {
+        Route::get('/', [KontakController::class, 'index'])->name('kontak');
+        Route::post('/simpan', [KontakController::class, 'simpan'])->name('kontak.simpan');
     });
 });

@@ -25,7 +25,7 @@ class PenggunaController extends Controller
 	{
         $data = Pengguna::where('pengguna_id', 'like', '%'.$req->cari.'%')->where('pengguna_nama', 'like', '%'.$req->cari.'%')->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.setup.pengguna.index', [
+        return view('pages.pengguna.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari
@@ -35,7 +35,7 @@ class PenggunaController extends Controller
 
 	public function tambah()
 	{
-        return view('pages.setup.pengguna.form', [
+        return view('pages.pengguna.form', [
             'back' => Str::contains(url()->previous(), ['pengguna/tambah', 'pengguna/edit'])? '/pengguna': url()->previous(),
             'aksi' => 'Tambah'
         ]);
@@ -76,7 +76,7 @@ class PenggunaController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.setup.pengguna.form', [
+        return view('pages.pengguna.form', [
             'data' => Pengguna::findOrFail($req->id),
             'back' => Str::contains(url()->previous(), 'pengguna/edit')? '/pengguna': url()->previous(),
             'aksi' => 'Edit'

@@ -31,7 +31,7 @@ class GalleryController extends Controller
 
         $data = $data->paginate(10);
         $data->appends([$req->cari, $req->file]);
-        return view('pages.gallery.index', [
+        return view('pages.datamaster.gallery.index', [
             'data' => $data,
             'cari' => $req->cari,
             'file' => $req->file,
@@ -40,7 +40,7 @@ class GalleryController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.gallery.form', [
+        return view('pages.datamaster.gallery.form', [
             'back' => Str::contains(url()->previous(), ['gallery/tambah', 'gallery/edit'])? '/gallery': url()->previous(),
             'aksi' => 'Tambah'
         ]);
