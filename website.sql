@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 20/10/2020 22:09:44
+ Date: 02/11/2020 09:04:50
 */
 
 SET NAMES utf8mb4;
@@ -256,7 +256,7 @@ CREATE TABLE `peserta_didik`  (
   `peserta_didik_kelas` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `peserta_didik_nama` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`peserta_didik_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for prestasi
@@ -337,6 +337,7 @@ CREATE TABLE `tenaga_pendidik`  (
   `mapel_id` bigint(255) NULL DEFAULT NULL,
   `tenaga_pendidik_kriteria` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `tenaga_pendidik_nip` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `tenaga_pendidik_foto` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   PRIMARY KEY (`tenaga_pendidik_id`) USING BTREE,
   INDEX `tenaga_pendidik_mapel_id_foreign`(`mapel_id`) USING BTREE,
   CONSTRAINT `tenaga_pendidik_mapel_id_foreign` FOREIGN KEY (`mapel_id`) REFERENCES `mapel` (`mapel_id`) ON DELETE RESTRICT ON UPDATE CASCADE
@@ -345,8 +346,8 @@ CREATE TABLE `tenaga_pendidik`  (
 -- ----------------------------
 -- Records of tenaga_pendidik
 -- ----------------------------
-INSERT INTO `tenaga_pendidik` VALUES (1, 'tesa2123', 2, 'PNS', NULL);
-INSERT INTO `tenaga_pendidik` VALUES (2, 'asdfasdf', 3, 'Non PNS', NULL);
+INSERT INTO `tenaga_pendidik` VALUES (1, 'tesa2123', 2, 'PNS', NULL, NULL);
+INSERT INTO `tenaga_pendidik` VALUES (2, 'asdfasdf', 3, 'Non PNS', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for video
