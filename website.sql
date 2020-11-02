@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost
+ Source Server         : Localhost 57
  Source Server Type    : MySQL
  Source Server Version : 50724
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 02/11/2020 09:04:50
+ Date: 02/11/2020 15:48:42
 */
 
 SET NAMES utf8mb4;
@@ -78,8 +78,14 @@ CREATE TABLE `ekskul`  (
   `ekskul_nama` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `ekskul_foto` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `ekskul_kategori` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ekskul_uraian` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   PRIMARY KEY (`ekskul_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ekskul
+-- ----------------------------
+INSERT INTO `ekskul` VALUES (2, 'adsf', '/uploads/ekskul/1604303009GG0bwQMSaImdgItq.png', NULL, '<p>asdf</p>');
 
 -- ----------------------------
 -- Table structure for gallery
@@ -92,6 +98,24 @@ CREATE TABLE `gallery`  (
   `sembunyikan` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`gallery_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for halaman
+-- ----------------------------
+DROP TABLE IF EXISTS `halaman`;
+CREATE TABLE `halaman`  (
+  `halaman_jenis` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `halaman_uraian` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `halaman_judul` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `halaman_gambar` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of halaman
+-- ----------------------------
+INSERT INTO `halaman` VALUES ('fasilitassekolah', '<p><span style=\"color: rgb(33, 37, 41); font-weight: 700;\">Uraianasdfas d</span><br></p>', 'Judul', NULL);
+INSERT INTO `halaman` VALUES ('denahsekolah', NULL, NULL, '/uploads/denah/1604299210jucP8PWW8eqseBHg.png');
+INSERT INTO `halaman` VALUES ('kontak', '<h1 class=\"m-0 text-dark\" style=\"font-family: &quot;Source Sans Pro&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 1.8rem; background-color: rgb(244, 246, 249);\">Kontak</h1>', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for jadwal_belajar
@@ -167,42 +191,6 @@ CREATE TABLE `kegiatan`  (
 INSERT INTO `kegiatan` VALUES (1, 'Bermain Basket', '/uploads/kegiatan/1603168121ilMBrB9cCD038oRp.jpg', 1);
 
 -- ----------------------------
--- Table structure for kelas
--- ----------------------------
-DROP TABLE IF EXISTS `kelas`;
-CREATE TABLE `kelas`  (
-  `kelas_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `kelas_nama` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`kelas_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for kontak
--- ----------------------------
-DROP TABLE IF EXISTS `kontak`;
-CREATE TABLE `kontak`  (
-  `kontak_uraian` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
-  `kontak_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`kontak_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of kontak
--- ----------------------------
-INSERT INTO `kontak` VALUES ('<p>asdfasdfasdfasdfasfas</p>', 1);
-
--- ----------------------------
--- Table structure for link_terkait
--- ----------------------------
-DROP TABLE IF EXISTS `link_terkait`;
-CREATE TABLE `link_terkait`  (
-  `link_terkait_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `link_terkait_nama` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `link_terkait_link` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
-  PRIMARY KEY (`link_terkait_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
 -- Table structure for mapel
 -- ----------------------------
 DROP TABLE IF EXISTS `mapel`;
@@ -217,18 +205,6 @@ CREATE TABLE `mapel`  (
 -- ----------------------------
 INSERT INTO `mapel` VALUES (2, 'TIK');
 INSERT INTO `mapel` VALUES (3, 'Matematika');
-
--- ----------------------------
--- Table structure for materi
--- ----------------------------
-DROP TABLE IF EXISTS `materi`;
-CREATE TABLE `materi`  (
-  `materi_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `materi_judul` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `materi_link` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `materi_file` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`materi_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for pengguna
@@ -256,7 +232,30 @@ CREATE TABLE `peserta_didik`  (
   `peserta_didik_kelas` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `peserta_didik_nama` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`peserta_didik_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of peserta_didik
+-- ----------------------------
+INSERT INTO `peserta_didik` VALUES (1, '/uploads/pesertadidik/1604297346KQIBpvKgmLREnkMU.pdf', 'VII', '2020');
+
+-- ----------------------------
+-- Table structure for posting
+-- ----------------------------
+DROP TABLE IF EXISTS `posting`;
+CREATE TABLE `posting`  (
+  `posting_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `posting_judul` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `posting_uraian` longtext CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `posting_jenis` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `posting_file` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  PRIMARY KEY (`posting_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of posting
+-- ----------------------------
+INSERT INTO `posting` VALUES (4, 'asdf', '<p>asdf1212</p>', 'modulbelajar', NULL);
 
 -- ----------------------------
 -- Table structure for prestasi
