@@ -1,13 +1,14 @@
 @extends('pages.main')
 
-@section('title', ' | Kalender Akademik')
+@section('title', ' | Modul Belajar')
 
 @section('page')
-<li class="breadcrumb-item active">Kalender Akademik</li>
+<li class="breadcrumb-item">Ruang Belajar</li>
+<li class="breadcrumb-item active">Modul Belajar</li>
 @endsection
 
 @section('header')
-<h1 class="m-0 text-dark">Kalender Akademik</h1>
+<h1 class="m-0 text-dark">Modul Belajar</h1>
 @endsection
 
 @section('subcontent')
@@ -17,9 +18,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/kalenderakademik/tambah" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="/modulbelajar/tambah" class="btn btn-sm btn-primary">Tambah</a>
                         <div class="card-tools">
-                            <form action="/kalenderakademik" method="GET">
+                            <form action="/modulbelajar" method="GET">
                                 <div class="input-group input-group" style="width: 150px;">
                                     <input type="text" class="form-control float-right" value="{{ $cari }}" name="cari" placeholder="Search">
                                     <div class="input-group-append">
@@ -35,22 +36,23 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Tanggal</th>
-                                        <th>Keterangan</th>
-                                        <th ></th>
+                                        <th>Judul Modul Belajar</th>
+                                        <th>File</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($data as $index => $row)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td class="text-nowrap">{{ $row->kalender_akademik_tanggal }}</td>
-                                        <td class="text-nowrap">{{ $row->kalender_akademik_uraian }}</td>
+                                        <td>{{ $row->posting_judul }}</td>
+                                        <td><a href="{{ $row->posting_file }}" target="_blank">File</a></td>
                                         <td class="text-right" nowrap>
                                             <div class="btn-group">
                                             </div>
                                             <div class="btn-group">
-                                                <a href="javascript:;" data-id="{{ $row->kalender_akademik_id }}" data-no="{{ $i }}" class="btn-danger btn btn-hapus" > Hapus</a>
+                                                <a href="{{ route('modulbelajar.edit', array('id' => $row->posting_id)) }}" class="btn btn-info"> Edit</a>
+                                                <a href="javascript:;" data-id="{{ $row->posting_id }}" data-no="{{ $i }}" class="btn-danger btn btn-hapus" > Hapus</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -88,7 +90,7 @@
                 }
             });
             $.ajax({
-                url: "/kalenderakademik/hapus",
+                url: "/modulbelajar/hapus",
                 type: "POST",
                 data: {
                     "_method": 'DELETE',
@@ -98,6 +100,7 @@
                     location.reload(true);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr);
                     alert(xhr.responseJSON.message);
                 }
             });

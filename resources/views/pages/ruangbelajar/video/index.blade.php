@@ -1,17 +1,14 @@
 @extends('pages.main')
 
-@section('title', ' | File Gambar')
-
-@push('css')
-<link rel="stylesheet" href="/plugins/ekko-lightbox/ekko-lightbox.css">
-@endpush
+@section('title', ' | Video Ruang Belajar')
 
 @section('page')
-<li class="breadcrumb-item active">File Gambar</li>
+<li class="breadcrumb-item">Ruang Belajar</li>
+<li class="breadcrumb-item active">Video</li>
 @endsection
 
 @section('header')
-<h1 class="m-0 text-dark">File Gambar</h1>
+<h1 class="m-0 text-dark">Video Ruang Belajar</h1>
 @endsection
 
 @section('subcontent')
@@ -21,15 +18,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/gallery/tambah" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="/video/tambah" class="btn btn-sm btn-primary">Tambah</a>
                         <div class="card-tools">
-                            <form action="/gallery" method="GET">
-                                <div class="input-group input-group">
-                                    <select class="form-control selectpicker" name="file">
-                                        <option value="semua" {{ $file == 'semua'? 'selected': '' }}>Semua File</option>
-                                        <option value="tampil" {{ $file == 'tampil'? 'selected': '' }}>Tampil</option>
-                                        <option value="tersembunyi" {{ $file == 'tersembunyi'? 'selected': '' }}>Tersembunyi</option>
-                                    </select>
+                            <form action="/video" method="GET">
+                                <div class="input-group input-group" style="width: 150px;">
                                     <input type="text" class="form-control float-right" value="{{ $cari }}" name="cari" placeholder="Search">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -38,18 +30,34 @@
                             </form>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="filter-container p-0 row">
-                            @foreach ($data as $i => $row)
-                            <div class="filtr-item col-sm-2 text-center">
-                                <label>{{ ++$i }}</label>
-                                <a href="{{ $row->gallery_gambar }}" data-toggle="lightbox" data-title="{{ $row->gallery_judul }}">
-                                    <img src="{{ $row->gallery_gambar }}" class="img-fluid mb-2" alt="white sample"/>
-                                </a>
-                                <input type="text" value="{{ $row->gallery_gambar }}" class="w-100" readonly>
-                                <a href="javascript:;" data-id="{{ $row->gallery_id }}" data-no="{{ $i }}" class="btn-danger btn-xs btn btn-hapus w-100" > Hapus</a>
-                            </div>
-                            @endforeach
+                    <div class="card-body table-responsive p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Judul</th>
+                                        <th>Deskripsi</th>
+                                        <th>Video Ruang Belajar</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data as $index => $row)
+                                    <tr>
+                                        <td class="align-middle">{{ ++$i }}</td>
+                                        <td class="align-middle">{{ $row->video_judul }}</td>
+                                        <td class="align-middle">{{ $row->video_uraian }}</td>
+                                        <td>{!! $row->video_link !!}</td>
+                                        <td class="text-right align-middle" nowrap>
+                                            <div class="btn-group">
+                                                <a href="javascript:;" data-id="{{ $row->video_id }}" data-no="{{ $i }}" class="btn-danger btn btn-hapus" > Hapus</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -81,7 +89,7 @@
                 }
             });
             $.ajax({
-                url: "/gallery/hapus",
+                url: "/video/hapus",
                 type: "POST",
                 data: {
                     "_method": 'DELETE',
@@ -96,21 +104,5 @@
             });
         }
     });
-</script>
-@endpush
-
-@push('scripts')
-<script src="/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
-<script src="/plugins/filterizr/jquery.filterizr.min.js"></script>
-
-<script>
-    $(function () {
-        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-            event.preventDefault();
-            $(this).ekkoLightbox({
-                alwaysShowClose: true
-            });
-        });
-    })
 </script>
 @endpush

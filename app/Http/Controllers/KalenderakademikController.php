@@ -17,7 +17,7 @@ class KalenderakademikController extends Controller
             $q->where('kalender_akademik_uraian', 'like', '%'.$req->cari.'%');
         })->orderBy('kalender_akademik_mulai')->paginate(10);
         $data->appends([$req->cari, $req->file]);
-        return view('pages.profil.kalenderakademik.index', [
+        return view('pages.akademik.kalenderakademik.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,7 +27,7 @@ class KalenderakademikController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.profil.kalenderakademik.form', [
+        return view('pages.akademik.kalenderakademik.form', [
             'back' => Str::contains(url()->previous(), ['kalenderakademik/tambah', 'kalenderakademik/edit'])? '/kalenderakademik': url()->previous(),
             'aksi' => 'Tambah'
         ]);

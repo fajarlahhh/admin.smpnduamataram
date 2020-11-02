@@ -1,13 +1,14 @@
 @extends('pages.main')
 
-@section('title', ' | Video')
+@section('title', ' | Informasi')
 
 @section('page')
-<li class="breadcrumb-item active">Video</li>
+<li class="breadcrumb-item">Ruang Belajar</li>
+<li class="breadcrumb-item active">Informasi</li>
 @endsection
 
 @section('header')
-<h1 class="m-0 text-dark">Video</h1>
+<h1 class="m-0 text-dark">Informasi</h1>
 @endsection
 
 @section('subcontent')
@@ -17,9 +18,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/video/tambah" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="/informasi/tambah" class="btn btn-sm btn-primary">Tambah</a>
                         <div class="card-tools">
-                            <form action="/video" method="GET">
+                            <form action="/informasi" method="GET">
                                 <div class="input-group input-group" style="width: 150px;">
                                     <input type="text" class="form-control float-right" value="{{ $cari }}" name="cari" placeholder="Search">
                                     <div class="input-group-append">
@@ -35,22 +36,23 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Judul</th>
-                                        <th>Deskripsi</th>
-                                        <th>Video</th>
+                                        <th>Judul Informasi</th>
+                                        <th>File</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($data as $index => $row)
                                     <tr>
-                                        <td class="align-middle">{{ ++$i }}</td>
-                                        <td class="align-middle">{{ $row->video_judul }}</td>
-                                        <td class="align-middle">{{ $row->video_uraian }}</td>
-                                        <td>{!! $row->video_link !!}</td>
-                                        <td class="text-right align-middle" nowrap>
+                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $row->posting_judul }}</td>
+                                        <td><a href="{{ $row->posting_file }}" target="_blank">File</a></td>
+                                        <td class="text-right" nowrap>
                                             <div class="btn-group">
-                                                <a href="javascript:;" data-id="{{ $row->video_id }}" data-no="{{ $i }}" class="btn-danger btn btn-hapus" > Hapus</a>
+                                            </div>
+                                            <div class="btn-group">
+                                                <a href="{{ route('informasi.edit', array('id' => $row->posting_id)) }}" class="btn btn-info"> Edit</a>
+                                                <a href="javascript:;" data-id="{{ $row->posting_id }}" data-no="{{ $i }}" class="btn-danger btn btn-hapus" > Hapus</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -88,7 +90,7 @@
                 }
             });
             $.ajax({
-                url: "/video/hapus",
+                url: "/informasi/hapus",
                 type: "POST",
                 data: {
                     "_method": 'DELETE',
@@ -98,6 +100,7 @@
                     location.reload(true);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr);
                     alert(xhr.responseJSON.message);
                 }
             });

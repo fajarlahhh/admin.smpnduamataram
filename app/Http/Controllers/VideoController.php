@@ -15,7 +15,7 @@ class VideoController extends Controller
             $q->where('video_judul', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.video.index', [
+        return view('pages.ruangbelajar.video.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -24,7 +24,7 @@ class VideoController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.video.form', [
+        return view('pages.ruangbelajar.video.form', [
             'back' => Str::contains(url()->previous(), ['video/tambah', 'video/edit'])? '/video': url()->previous(),
             'aksi' => 'Tambah'
         ]);

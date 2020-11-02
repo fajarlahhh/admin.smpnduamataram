@@ -5,8 +5,11 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\EkskulController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HalamanController;
+use App\Http\Controllers\PostingController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\PenggunaController;
@@ -178,7 +181,48 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::prefix('kontak')->group(function () {
-        Route::get('/', [KontakController::class, 'index'])->name('kontak');
-        Route::post('/simpan', [KontakController::class, 'simpan'])->name('kontak.simpan');
+        Route::get('/', [HalamanController::class, 'kontak'])->name('kontak');
+        Route::post('/simpan', [HalamanController::class, 'simpan'])->name('kontak.simpan');
+    });
+
+    Route::prefix('fasilitassekolah')->group(function () {
+        Route::get('/', [HalamanController::class, 'fasilitassekolah'])->name('fasilitassekolah');
+        Route::post('/simpan', [HalamanController::class, 'simpan'])->name('fasilitassekolah.simpan');
+    });
+
+    Route::prefix('denahsekolah')->group(function () {
+        Route::get('/', [HalamanController::class, 'denahsekolah'])->name('denahsekolah');
+        Route::post('/simpan', [HalamanController::class, 'simpan'])->name('denahsekolah.simpan');
+    });
+
+    Route::prefix('informasi')->group(function () {
+        Route::get('/', [PostingController::class, 'informasi'])->name('informasi');
+        Route::get('/tambah', [PostingController::class, 'tambah_informasi'])->name('informasi.tambah');
+        Route::get('/edit', [PostingController::class, 'edit_informasi'])->name('informasi.edit');
+        Route::post('/simpan', [PostingController::class, 'simpan'])->name('informasi.simpan');
+        Route::delete('/hapus', [PostingController::class, 'hapus']);
+    });
+
+    Route::prefix('jadwalbelajar')->group(function () {
+        Route::get('/', [PostingController::class, 'jadwalbelajar'])->name('jadwalbelajar');
+        Route::get('/tambah', [PostingController::class, 'tambah_jadwalbelajar'])->name('jadwalbelajar.tambah');
+        Route::get('/edit', [PostingController::class, 'edit_jadwalbelajar'])->name('jadwalbelajar.edit');
+        Route::post('/simpan', [PostingController::class, 'simpan'])->name('jadwalbelajar.simpan');
+        Route::delete('/hapus', [PostingController::class, 'hapus']);
+    });
+
+    Route::prefix('modulbelajar')->group(function () {
+        Route::get('/', [PostingController::class, 'modulbelajar'])->name('modulbelajar');
+        Route::get('/tambah', [PostingController::class, 'tambah_modulbelajar'])->name('modulbelajar.tambah');
+        Route::get('/edit', [PostingController::class, 'edit_modulbelajar'])->name('modulbelajar.edit');
+        Route::post('/simpan', [PostingController::class, 'simpan'])->name('modulbelajar.simpan');
+        Route::delete('/hapus', [PostingController::class, 'hapus']);
+    });
+
+    Route::prefix('ekskul')->group(function () {
+        Route::get('/', [EkskulController::class, 'index'])->name('ekskul');
+        Route::get('/tambah', [EkskulController::class, 'tambah'])->name('ekskul.tambah');
+        Route::post('/simpan', [EkskulController::class, 'simpan'])->name('ekskul.simpan');
+        Route::delete('/hapus', [EkskulController::class, 'hapus']);
     });
 });

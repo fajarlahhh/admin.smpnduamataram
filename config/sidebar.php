@@ -18,6 +18,19 @@ return [
 		'title' => 'Dashboard',
 		'url' => '/dashboard'
 	],[
+		'icon' => 'fas fa-university',
+		'title' => 'Akademik',
+		'url' => '#',
+		'caret' => true,
+		'id' => 'akademik',
+		'sub_menu' => [[
+			'url' => '/kalenderakademik',
+			'title' => 'Kalender Akadmik'
+        ],[
+			'url' => '/ekskul',
+			'title' => 'Ekstrakurikuler'
+        ]]
+	],[
 		'icon' => 'fas fa-newspaper',
 		'title' => 'Berita',
 		'url' => '/berita'
@@ -33,7 +46,7 @@ return [
 		'id' => 'datamaster',
 		'sub_menu' => [[
 			'url' => '/gallery',
-			'title' => 'Gallery'
+			'title' => 'File Gambar'
         ],[
 			'url' => '/kategoriberita',
 			'title' => 'Kategori Berita'
@@ -55,6 +68,12 @@ return [
         ],[
             'title' => 'Peserta Pendidik',
             'url' => '/pesertadidik'
+        ],[
+            'title' => 'Fasilitas Sekolah',
+            'url' => '/fasilitassekolah'
+        ],[
+            'title' => 'Denah Sekolah',
+            'url' => '/denahsekolah'
         ]]
 	],[
 		'icon' => 'fas fa-snowboarding',
@@ -95,13 +114,24 @@ return [
         ],[
 			'url' => '/tatausaha',
 			'title' => 'Tata Usaha'
-		],[
-			'url' => '/kalenderakademik',
-			'title' => 'Kalenderakademik'
-        ]]
+		]]
 	],[
-		'icon' => 'fas fa-video',
-		'title' => 'Video',
-		'url' => '/video'
+		'icon' => 'fas fa-graduation-cap',
+		'title' => 'Ruang Belajar',
+		'url' => '#',
+		'caret' => true,
+		'sub_menu' => [[
+            'title' => 'Jadwal Belajar',
+            'url' => '/jadwalbelajar'
+        ],[
+            'title' => 'Modul Belajar',
+            'url' => '/modulbelajar'
+        ],[
+            'title' => 'Video Ruang Belajar',
+            'url' => '/video'
+        ],[
+            'title' => 'Informasi',
+            'url' => '/informasi'
+        ]]
 	]]
 ];

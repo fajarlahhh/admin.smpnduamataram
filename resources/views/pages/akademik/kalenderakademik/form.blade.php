@@ -7,6 +7,7 @@
 @endpush
 
 @section('page')
+<li class="breadcrumb-item">Akademik</li>
 <li class="breadcrumb-item">Kalender Akademik</li>
 <li class="breadcrumb-item active">{{ $aksi }} Kalender Akademik</li>
 @endsection

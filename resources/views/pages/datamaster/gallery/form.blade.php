@@ -1,14 +1,14 @@
 @extends('pages.main')
 
-@section('title', ' | '.$aksi.' Gallery')
+@section('title', ' | '.$aksi.' File Gambar')
 
 @section('page')
-<li class="breadcrumb-item">Gallery</li>
-<li class="breadcrumb-item active">{{ $aksi }} Gallery</li>
+<li class="breadcrumb-item">File Gambar</li>
+<li class="breadcrumb-item active">{{ $aksi }} File Gambar</li>
 @endsection
 
 @section('header')
-<h1 class="m-0 text-dark">{{ $aksi }} Gallery</h1>
+<h1 class="m-0 text-dark">{{ $aksi }} File Gambar</h1>
 @endsection
 
 @section('subcontent')
