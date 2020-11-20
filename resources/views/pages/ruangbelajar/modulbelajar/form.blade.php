@@ -41,6 +41,20 @@
                                         <textarea class="textarea" name="posting_uraian">{{ old('posting_uraian')? old('posting_uraian'): ($aksi == "Edit"? $data->posting_uraian: "") }}</textarea>
                                     </div>
                                     <div class="form-group">
+                                        <label for="control-label">Kelas</label>
+                                        <select class="form-control selectpicker" name="posting_kriteria" data-live-search="true" data-style="btn-aqua" data-size="3" data-width="100%">
+                                            @foreach($kelas as $row)
+                                            @php
+                                                $selected = '';
+                                                if(old('posting_kriteria') == $row){
+                                                    $selected =  'selected';
+                                                }
+                                            @endphp
+                                            <option value="{{ $row }}" {{ $selected }}>{{ $row }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="control-label">File Upload</label>
                                         <input class="form-control" type="file" name="posting_file" accept="application/pdf"autocomplete="off" />
                                     </div>

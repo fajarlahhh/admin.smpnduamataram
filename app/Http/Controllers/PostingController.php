@@ -88,6 +88,7 @@ class PostingController extends Controller
 	{
         return view('pages.ruangbelajar.modulbelajar.form', [
             'back' => url()->previous(),
+            'kelas' => ['VII', 'VIII', 'IX'],
             'aksi' => 'Tambah'
         ]);
     }
@@ -96,6 +97,7 @@ class PostingController extends Controller
 	{
         return view('pages.ruangbelajar.modulbelajar.form', [
             'data' => Posting::findOrFail($req->get('id')),
+            'kelas' => ['VII', 'VIII', 'IX'],
             'back' => url()->previous(),
             'aksi' => 'Edit'
         ]);
@@ -113,6 +115,7 @@ class PostingController extends Controller
                 $data->posting_judul = $req->get('posting_judul');
                 $data->posting_uraian = $req->get('posting_uraian');
                 $data->posting_jenis = $req->get('posting_jenis');
+                $data->posting_kriteria = $req->get('posting_kriteria');
 
                 if($req->file('posting_file')){
                     File::delete(public_path($data->posting_file));
@@ -138,6 +141,7 @@ class PostingController extends Controller
                 $data->posting_jenis = $req->get('posting_jenis');
                 $data->posting_judul = $req->get('posting_judul');
                 $data->posting_uraian = $req->get('posting_uraian');
+                $data->posting_kriteria = $req->get('posting_kriteria');
                 $data->save();
             }
             return redirect($req->get('redirect')? $req->get('redirect'): 'posting');

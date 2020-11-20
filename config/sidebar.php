@@ -69,8 +69,8 @@ return [
             'title' => 'Peserta Pendidik',
             'url' => '/pesertadidik'
         ],[
-            'title' => 'Fasilitas Sekolah',
-            'url' => '/fasilitassekolah'
+            'title' => 'Sarana Prasarana',
+            'url' => '/fasilitas'
         ],[
             'title' => 'Denah Sekolah',
             'url' => '/denahsekolah'

@@ -26,6 +26,7 @@ class VideoController extends Controller
 	{
         return view('pages.ruangbelajar.video.form', [
             'back' => Str::contains(url()->previous(), ['video/tambah', 'video/edit'])? '/video': url()->previous(),
+            'kelas' => ['VII', 'VIII', 'IX'],
             'aksi' => 'Tambah'
         ]);
     }

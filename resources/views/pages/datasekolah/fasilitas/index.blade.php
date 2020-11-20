@@ -1,14 +1,13 @@
 @extends('pages.main')
 
-@section('title', ' | Modul Belajar')
+@section('title', ' | Sarana Prasarana')
 
 @section('page')
-<li class="breadcrumb-item">Ruang Belajar</li>
-<li class="breadcrumb-item active">Modul Belajar</li>
+<li class="breadcrumb-item active">Sarana Prasarana</li>
 @endsection
 
 @section('header')
-<h1 class="m-0 text-dark">Modul Belajar</h1>
+<h1 class="m-0 text-dark">Sarana Prasarana</h1>
 @endsection
 
 @section('subcontent')
@@ -18,9 +17,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/modulbelajar/tambah" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="/fasilitas/tambah" class="btn btn-sm btn-primary">Tambah</a>
                         <div class="card-tools">
-                            <form action="/modulbelajar" method="GET">
+                            <form action="/fasilitas" method="GET">
                                 <div class="input-group input-group" style="width: 150px;">
                                     <input type="text" class="form-control float-right" value="{{ $cari }}" name="cari" placeholder="Search">
                                     <div class="input-group-append">
@@ -36,9 +35,9 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Judul Modul Belajar</th>
-                                        <th>Kelas</th>
-                                        <th>File</th>
+                                        <th>Judul</th>
+                                        <th>Kategori</th>
+                                        <th>Gambar</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -46,15 +45,12 @@
                                     @foreach ($data as $index => $row)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $row->posting_judul }}</td>
-                                        <td>{{ $row->posting_kriteria }}</td>
-                                        <td><a href="{{ $row->posting_file }}" target="_blank">File</a></td>
+                                        <td>{{ $row->fasilitas_judul }}</td>
+                                        <td>{{ $row->fasilitas_kategori }}</td>
+                                        <td><a href="{{ $row->fasilitas_gambar }}" target="_blank">Gambar</a></td>
                                         <td class="text-right" nowrap>
                                             <div class="btn-group">
-                                            </div>
-                                            <div class="btn-group">
-                                                <a href="{{ route('modulbelajar.edit', array('id' => $row->posting_id)) }}" class="btn btn-info"> Edit</a>
-                                                <a href="javascript:;" data-id="{{ $row->posting_id }}" data-no="{{ $i }}" class="btn-danger btn btn-hapus" > Hapus</a>
+                                                <a href="javascript:;" data-id="{{ $row->fasilitas_id }}" data-no="{{ $i }}" class="btn-danger btn btn-hapus" > Hapus</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -92,7 +88,7 @@
                 }
             });
             $.ajax({
-                url: "/modulbelajar/hapus",
+                url: "/fasilitas/hapus",
                 type: "POST",
                 data: {
                     "_method": 'DELETE',
@@ -102,7 +98,6 @@
                     location.reload(true);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    console.log(xhr);
                     alert(xhr.responseJSON.message);
                 }
             });

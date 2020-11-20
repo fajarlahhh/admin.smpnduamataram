@@ -16,6 +16,7 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\VisimisiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\TatausahaController;
 use App\Http\Controllers\PesertadidikController;
 use App\Http\Controllers\KepalasekolahController;
@@ -185,9 +186,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/simpan', [HalamanController::class, 'simpan'])->name('kontak.simpan');
     });
 
-    Route::prefix('fasilitassekolah')->group(function () {
-        Route::get('/', [HalamanController::class, 'fasilitassekolah'])->name('fasilitassekolah');
-        Route::post('/simpan', [HalamanController::class, 'simpan'])->name('fasilitassekolah.simpan');
+    Route::prefix('fasilitas')->group(function () {
+        Route::get('/', [FasilitasController::class, 'index'])->name('fasilitas');
+        Route::get('/tambah', [FasilitasController::class, 'tambah'])->name('fasilitas.tambah');
+        Route::post('/simpan', [FasilitasController::class, 'simpan'])->name('fasilitas.simpan');
+        Route::delete('/hapus', [FasilitasController::class, 'hapus']);
     });
 
     Route::prefix('denahsekolah')->group(function () {
