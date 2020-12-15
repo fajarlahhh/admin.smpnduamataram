@@ -17,7 +17,7 @@ class KalenderakademikController extends Controller
             $q->where('kalender_akademik_uraian', 'like', '%'.$req->cari.'%');
         })->orderBy('kalender_akademik_mulai')->paginate(10);
         $data->appends([$req->cari, $req->file]);
-        return view('pages.akademik.kalenderakademik.index', [
+        return view('backend.pages.akademik.kalenderakademik.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,8 +27,8 @@ class KalenderakademikController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.akademik.kalenderakademik.form', [
-            'back' => Str::contains(url()->previous(), ['kalenderakademik/tambah', 'kalenderakademik/edit'])? '/kalenderakademik': url()->previous(),
+        return view('backend.pages.akademik.kalenderakademik.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/kalenderakademik/tambah', 'admin-area/kalenderakademik/edit'])? '/kalenderakademik': url()->previous(),
             'aksi' => 'Tambah'
         ]);
     }
@@ -47,7 +47,7 @@ class KalenderakademikController extends Controller
             $data->kalender_akademik_tanggal = $req->get('kalender_akademik_tanggal');
             $data->kalender_akademik_uraian = $req->get('kalender_akademik_uraian');
             $data->save();
-            return redirect($req->get('redirect')? $req->get('redirect'): 'kalenderakademik');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/kalenderakademik');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

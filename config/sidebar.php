@@ -16,7 +16,7 @@ return [
     'menu' => [[
 		'icon' => 'fas fa-th-large',
 		'title' => 'Dashboard',
-		'url' => '/dashboard'
+		'url' => '/admin-area/dashboard'
 	],[
 		'icon' => 'fas fa-university',
 		'title' => 'Akademik',
@@ -24,20 +24,29 @@ return [
 		'caret' => true,
 		'id' => 'akademik',
 		'sub_menu' => [[
-			'url' => '/kalenderakademik',
-			'title' => 'Kalender Akadmik'
-        ],[
-			'url' => '/ekskul',
+			'url' => '/admin-area/ekskul',
 			'title' => 'Ekstrakurikuler'
+        ],[
+			'url' => '/admin-area/kalenderakademik',
+			'title' => 'Kalender Akadmik'
         ]]
 	],[
-		'icon' => 'fas fa-newspaper',
+		'icon' => 'fas fa-university',
 		'title' => 'Berita',
-		'url' => '/berita'
+		'url' => '#',
+		'caret' => true,
+		'id' => 'berita',
+		'sub_menu' => [[
+            'title' => 'Data Berita',
+            'url' => '/admin-area/berita'
+        ],[
+			'url' => '/admin-area/kategoriberita',
+			'title' => 'Kategori Berita'
+        ]]
 	],[
 		'icon' => 'fas fa-images',
 		'title' => 'Carousel',
-		'url' => '/carousel'
+		'url' => '/admin-area/carousel'
 	],[
 		'icon' => 'fas fa-database',
 		'title' => 'Data Master',
@@ -45,16 +54,10 @@ return [
 		'caret' => true,
 		'id' => 'datamaster',
 		'sub_menu' => [[
-			'url' => '/gallery',
+			'url' => '/admin-area/gallery',
 			'title' => 'File Gambar'
         ],[
-			'url' => '/kategoriberita',
-			'title' => 'Kategori Berita'
-        ],[
-			'url' => '/kategorikegiatan',
-			'title' => 'Kategori Kegiatan'
-        ],[
-			'url' => '/mapel',
+			'url' => '/admin-area/mapel',
 			'title' => 'Mata Pelajaran'
         ]]
 	],[
@@ -63,56 +66,64 @@ return [
 		'url' => '#',
 		'caret' => true,
 		'sub_menu' => [[
-            'title' => 'Tenaga Pendidik',
-            'url' => '/tenagapendidik'
+            'title' => 'Denah Sekolah',
+            'url' => '/admin-area/denahsekolah'
         ],[
             'title' => 'Peserta Pendidik',
-            'url' => '/pesertadidik'
+            'url' => '/admin-area/pesertadidik'
         ],[
             'title' => 'Sarana Prasarana',
-            'url' => '/fasilitas'
+            'url' => '/admin-area/fasilitas'
         ],[
-            'title' => 'Denah Sekolah',
-            'url' => '/denahsekolah'
+            'title' => 'Tenaga Pendidik',
+            'url' => '/admin-area/tenagapendidik'
         ]]
 	],[
 		'icon' => 'fas fa-snowboarding',
 		'title' => 'Kegiatan',
-		'url' => '/kegiatan'
+		'url' => '#',
+		'caret' => true,
+		'sub_menu' => [[
+			'url' => '/admin-area/kegiatan',
+			'title' => 'Data Kegiatan'
+        ],[
+			'url' => '/admin-area/kategorikegiatan',
+			'title' => 'Kategori Kegiatan'
+        ]]
 	],[
 		'icon' => 'fas fa-id-card',
 		'title' => 'Kontak',
-		'url' => '/kontak'
+		'url' => '/admin-area/kontak'
 	],[
 		'icon' => 'fas fa-users',
 		'title' => 'Pengguna',
-		'url' => '/pengguna'
+		'url' => '/admin-area/pengguna'
 	],[
 		'icon' => 'fas fa-medal',
 		'title' => 'Prestasi',
-		'url' => '/prestasi'
+		'url' => '/admin-area/prestasi'
 	],[
 		'icon' => 'fas fa-id-card',
 		'title' => 'Profil',
 		'url' => '#',
 		'caret' => true,
 		'sub_menu' => [[
-			'url' => '/kepalasekolah',
+			'url' => '/admin-area/kepalasekolah',
 			'title' => 'Kepala Sekolah'
         ],[
-			'url' => '/sejarahsekolah',
+			'url' => '/admin-area/sejarahsekolah',
 			'title' => 'Sejarah Sekolah'
 		],[
-			'url' => '/visimisi',
+			'url' => '/admin-area/visimisi',
 			'title' => 'Visi Misi'
         ],[
-			'url' => '/komitesekolah',
+			'url' => '/admin-area/komitesekolah',
 			'title' => 'Komite Sekolah'
 		],[
-			'url' => '/strukturorganisasi',
+			'url' => '/admin-area/strukturorganisasi',
 			'title' => 'Struktur Organisasi'
         ],[
-			'url' => '/tatausaha',
+			'url' => '/admin-area/tatausaha',
 			'title' => 'Tata Usaha'
 		]]
 	],[
@@ -122,16 +133,16 @@ return [
 		'caret' => true,
 		'sub_menu' => [[
             'title' => 'Jadwal Belajar',
-            'url' => '/jadwalbelajar'
+            'url' => '/admin-area/jadwalbelajar'
         ],[
             'title' => 'Modul Belajar',
-            'url' => '/modulbelajar'
+            'url' => '/admin-area/modulbelajar'
         ],[
             'title' => 'Video Ruang Belajar',
-            'url' => '/video'
+            'url' => '/admin-area/video'
         ],[
             'title' => 'Informasi',
-            'url' => '/informasi'
+            'url' => '/admin-area/informasi'
         ]]
 	]]
 ];

@@ -17,7 +17,7 @@ class PesertadidikController extends Controller
             $q->where('peserta_didik_nama', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari,$req->kelas]);
-        return view('pages.datasekolah.pesertadidik.index', [
+        return view('backend.pages.datasekolah.pesertadidik.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,8 +27,8 @@ class PesertadidikController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.datasekolah.pesertadidik.form', [
-            'back' => Str::contains(url()->previous(), ['pesertadidik/tambah'])? '/pesertadidik': url()->previous(),
+        return view('backend.pages.datasekolah.pesertadidik.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/pesertadidik/tambah'])? '/admin-area/pesertadidik': url()->previous(),
             'kelas' => ['VII', 'VIII', 'IX'],
             'aksi' => 'Tambah'
         ]);
@@ -52,7 +52,7 @@ class PesertadidikController extends Controller
             $data->peserta_didik_file = '/uploads/pesertadidik/'.$nama_file;
             $data->peserta_didik_kelas = $req->get('peserta_didik_kelas');
             $data->save();
-            return redirect($req->get('redirect')? $req->get('redirect'): 'pesertadidik');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/pesertadidik');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

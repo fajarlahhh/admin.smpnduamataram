@@ -18,7 +18,7 @@ class KategorikegiatanController extends Controller
             $q->where('kategori_kegiatan_uraian', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.datamaster.kategorikegiatan.index', [
+        return view('backend.pages.kegiatan.kategorikegiatan.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,8 +27,8 @@ class KategorikegiatanController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.datamaster.kategorikegiatan.form', [
-            'back' => Str::contains(url()->previous(), ['kategorikegiatan/tambah', 'kategorikegiatan/edit'])? '/kategorikegiatan': url()->previous(),
+        return view('backend.pages.kegiatan.kategorikegiatan.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/kategorikegiatan/tambah', 'admin-area/kategorikegiatan/edit'])? '/admin-area/kategorikegiatan': url()->previous(),
             'aksi' => 'Tambah'
         ]);
     }
@@ -49,7 +49,7 @@ class KategorikegiatanController extends Controller
                 $data->kategori_kegiatan_uraian = $req->get('kategori_kegiatan_uraian');
                 $data->save();
             }
-            return redirect($req->get('redirect')? $req->get('redirect'): 'kategorikegiatan');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/kategorikegiatan');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }
@@ -57,9 +57,9 @@ class KategorikegiatanController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.datamaster.kategorikegiatan.form', [
+        return view('backend.pages.kegiatan.kategorikegiatan.form', [
             'data' => KategoriKegiatan::findOrFail($req->get('id')),
-            'back' => Str::contains(url()->previous(), ['kategorikegiatan/tambah', 'kategorikegiatan/edit'])? '/kategorikegiatan': url()->previous(),
+            'back' => Str::contains(url()->previous(), ['admin-area/kategorikegiatan/tambah', 'admin-area/kategorikegiatan/edit'])? '/admin-area/kategorikegiatan': url()->previous(),
             'aksi' => 'Edit'
         ]);
     }

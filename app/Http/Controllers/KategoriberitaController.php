@@ -18,7 +18,7 @@ class KategoriberitaController extends Controller
             $q->where('kategori_berita_uraian', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.datamaster.kategoriberita.index', [
+        return view('backend.pages.berita.kategoriberita.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,8 +27,8 @@ class KategoriberitaController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.datamaster.kategoriberita.form', [
-            'back' => Str::contains(url()->previous(), ['kategoriberita/tambah', 'kategoriberita/edit'])? '/kategoriberita': url()->previous(),
+        return view('backend.pages.berita.kategoriberita.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/kategoriberita/tambah', 'admin-area/kategoriberita/edit'])? '/kategoriberita': url()->previous(),
             'aksi' => 'Tambah'
         ]);
     }
@@ -49,7 +49,7 @@ class KategoriberitaController extends Controller
                 $data->kategori_berita_uraian = $req->get('kategori_berita_uraian');
                 $data->save();
             }
-            return redirect($req->get('redirect')? $req->get('redirect'): 'kategoriberita');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/kategoriberita');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }
@@ -57,9 +57,9 @@ class KategoriberitaController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.datamaster.kategoriberita.form', [
+        return view('backend.pages.berita.kategoriberita.form', [
             'data' => KategoriBerita::findOrFail($req->get('id')),
-            'back' => Str::contains(url()->previous(), ['kategoriberita/tambah', 'kategoriberita/edit'])? '/kategoriberita': url()->previous(),
+            'back' => Str::contains(url()->previous(), ['admin-area/kategoriberita/tambah', 'admin-area/kategoriberita/edit'])? '/kategoriberita': url()->previous(),
             'aksi' => 'Edit'
         ]);
     }

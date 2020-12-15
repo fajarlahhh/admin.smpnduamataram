@@ -18,7 +18,7 @@ class MapelController extends Controller
             $q->where('mapel_nama', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.datamaster.mapel.index', [
+        return view('backend.pages.datamaster.mapel.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,8 +27,8 @@ class MapelController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.datamaster.mapel.form', [
-            'back' => Str::contains(url()->previous(), ['mapel/tambah', 'mapel/edit'])? '/mapel': url()->previous(),
+        return view('backend.pages.datamaster.mapel.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/mapel/tambah', 'admin-area/mapel/edit'])? '/admin-area/mapel': url()->previous(),
             'aksi' => 'Tambah'
         ]);
     }
@@ -49,7 +49,7 @@ class MapelController extends Controller
                 $data->mapel_nama = $req->get('mapel_nama');
                 $data->save();
             }
-            return redirect($req->get('redirect')? $req->get('redirect'): 'mapel');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/mapel');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }
@@ -57,9 +57,9 @@ class MapelController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.datamaster.mapel.form', [
+        return view('backend.pages.datamaster.mapel.form', [
             'data' => Mapel::findOrFail($req->get('id')),
-            'back' => Str::contains(url()->previous(), ['mapel/tambah', 'mapel/edit'])? '/mapel': url()->previous(),
+            'back' => Str::contains(url()->previous(), ['admin-area/mapel/tambah', 'admin-area/mapel/edit'])? '/admin-area/mapel': url()->previous(),
             'aksi' => 'Edit'
         ]);
     }

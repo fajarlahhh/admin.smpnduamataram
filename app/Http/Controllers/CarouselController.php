@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Carousel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\KategoriCarousel;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class CarouselController extends Controller
@@ -18,7 +16,7 @@ class CarouselController extends Controller
             $q->where('carousel_judul', 'like', '%'.$req->cari.'%')->where('carousel_uraian', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.carousel.index', [
+        return view('backend.pages.carousel.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,7 +25,7 @@ class CarouselController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.carousel.form', [
+        return view('backend.pages.carousel.form', [
             'back' => Str::contains(url()->previous(), ['carousel/tambah', 'carousel/edit'])? '/carousel': url()->previous(),
             'aksi' => 'Tambah'
         ]);

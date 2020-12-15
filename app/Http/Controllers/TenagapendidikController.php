@@ -6,9 +6,6 @@ use App\Models\Mapel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\TenagaPendidik;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
-use App\Models\KategoriTenagaPendidik;
 
 class TenagaPendidikController extends Controller
 {
@@ -31,7 +28,7 @@ class TenagaPendidikController extends Controller
 
         $data = $data->paginate(10);
         $data->appends([$req->cari, $req->kriteria]);
-        return view('pages.datasekolah.tenagapendidik.index', [
+        return view('backend.pages.datasekolah.tenagapendidik.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -41,8 +38,8 @@ class TenagaPendidikController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.datasekolah.tenagapendidik.form', [
-            'back' => Str::contains(url()->previous(), ['tenagapendidik/tambah', 'tenagapendidik/edit'])? '/tenagapendidik': url()->previous(),
+        return view('backend.pages.datasekolah.tenagapendidik.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/tenagapendidik/tambah', 'admin-area/tenagapendidik/edit'])? '/admin-area/tenagapendidik': url()->previous(),
             'mapel' => Mapel::all(),
             'kategori' => ['PNS', 'Non PNS'],
             'aksi' => 'Tambah'
@@ -70,7 +67,7 @@ class TenagaPendidikController extends Controller
                 $data->tenaga_pendidik_kriteria = $req->get('tenaga_pendidik_kriteria');
                 $data->save();
             }
-            return redirect($req->get('redirect')? $req->get('redirect'): 'tenaga_pendidik');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/tenagapendidik');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }
@@ -78,10 +75,10 @@ class TenagaPendidikController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.datasekolah.tenagapendidik.form', [
+        return view('backend.pages.datasekolah.tenagapendidik.form', [
             'data' => TenagaPendidik::findOrFail($req->get('id')),
             'mapel' => Mapel::all(),
-            'back' => Str::contains(url()->previous(), ['tenagapendidik/tambah', 'tenagapendidik/edit'])? '/tenagapendidik': url()->previous(),
+            'back' => Str::contains(url()->previous(), ['admin-area/tenagapendidik/tambah', 'admin-area/tenagapendidik/edit'])? '/admin-area/tenagapendidik': url()->previous(),
             'kategori' => ['PNS', 'Non PNS'],
             'aksi' => 'Edit'
         ]);

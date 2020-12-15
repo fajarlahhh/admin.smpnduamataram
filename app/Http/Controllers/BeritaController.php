@@ -18,7 +18,7 @@ class BeritaController extends Controller
             $q->where('berita_judul', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.berita.index', [
+        return view('backend.pages.berita.data.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,8 +27,8 @@ class BeritaController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.berita.form', [
-            'back' => Str::contains(url()->previous(), ['berita/tambah', 'berita/edit'])? '/berita': url()->previous(),
+        return view('backend.pages.berita.data.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/berita/tambah', 'admin-area/berita/edit'])? '/admin-area/berita': url()->previous(),
             'kategori' => KategoriBerita::all(),
             'aksi' => 'Tambah'
         ]);
@@ -73,7 +73,7 @@ class BeritaController extends Controller
                 $data->kategori_berita_id = $req->get('kategori_berita_id');
                 $data->save();
             }
-            return redirect($req->get('redirect')? $req->get('redirect'): 'berita');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/berita');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }
@@ -81,9 +81,9 @@ class BeritaController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.berita.form', [
+        return view('backend.pages.berita.data.form', [
             'data' => Berita::findOrFail($req->get('id')),
-            'back' => Str::contains(url()->previous(), ['berita/tambah', 'berita/edit'])? '/berita': url()->previous(),
+            'back' => Str::contains(url()->previous(), ['admin-area/berita/tambah', 'admin-area/berita/edit'])? '/berita': url()->previous(),
             'kategori' => KategoriBerita::all(),
             'aksi' => 'Edit'
         ]);

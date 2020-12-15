@@ -16,7 +16,7 @@ class EkskulController extends Controller
             $q->where('ekskul_nama', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.akademik.ekskul.index', [
+        return view('backend.pages.akademik.ekskul.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -25,7 +25,7 @@ class EkskulController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.akademik.ekskul.form', [
+        return view('backend.pages.akademik.ekskul.form', [
             'back' => url()->previous(),
             'aksi' => 'Tambah'
         ]);
@@ -33,7 +33,7 @@ class EkskulController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.akademik.ekskul.form', [
+        return view('backend.pages.akademik.ekskul.form', [
             'data' => Ekskul::findOrFail($req->get('id')),
             'back' => url()->previous(),
             'aksi' => 'Edit'
@@ -79,7 +79,7 @@ class EkskulController extends Controller
                 $data->ekskul_uraian = $req->get('ekskul_uraian');
                 $data->save();
             }
-            return redirect('ekskul');
+            return redirect('admin-area/ekskul');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

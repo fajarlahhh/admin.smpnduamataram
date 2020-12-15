@@ -9,6 +9,6 @@ class DashboardController extends Controller
     //
     public function index(Request $req)
     {
-        return view('pages.dashboard.index');
+        return view('backend.pages.dashboard.index');
     }
 }

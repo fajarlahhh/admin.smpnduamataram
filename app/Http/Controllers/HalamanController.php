@@ -12,7 +12,7 @@ class HalamanController extends Controller
     //
 	public function fasilitassekolah(Request $req)
 	{
-        return view('pages.datasekolah.fasilitassekolah.form', [
+        return view('backend.pages.datasekolah.fasilitassekolah.form', [
             'data' => Halaman::find('fasilitassekolah'),
             'aksi' => 'Tambah'
         ]);
@@ -20,7 +20,7 @@ class HalamanController extends Controller
 
 	public function denahsekolah(Request $req)
 	{
-        return view('pages.datasekolah.denahsekolah.form', [
+        return view('backend.pages.datasekolah.denahsekolah.form', [
             'data' => Halaman::find('denahsekolah'),
             'aksi' => 'Tambah'
         ]);
@@ -28,7 +28,7 @@ class HalamanController extends Controller
 
 	public function kontak(Request $req)
 	{
-        return view('pages.kontak.form', [
+        return view('backend.pages.kontak.form', [
             'data' => Halaman::find('kontak'),
             'aksi' => 'Tambah'
         ]);
@@ -48,8 +48,8 @@ class HalamanController extends Controller
 
                 $ext = $file->getClientOriginalExtension();
                 $nama_file = time().Str::random().".".$ext;
-                $file->move(public_path('uploads/denah'), $nama_file);
-                $halaman_gambar = '/uploads/denah/'.$nama_file;
+                $file->move(public_path('uploads/halaman'), $nama_file);
+                $halaman_gambar = '/uploads/halaman/'.$nama_file;
             }
 
             $data = new Halaman();

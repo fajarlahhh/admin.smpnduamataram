@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Gallery;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\KategoriGallery;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class GalleryController extends Controller
@@ -29,9 +27,9 @@ class GalleryController extends Controller
                 break;
         }
 
-        $data = $data->paginate(10);
+        $data = $data->paginate(12);
         $data->appends([$req->cari, $req->file]);
-        return view('pages.datamaster.gallery.index', [
+        return view('backend.pages.datamaster.gallery.index', [
             'data' => $data,
             'cari' => $req->cari,
             'file' => $req->file,
@@ -40,8 +38,8 @@ class GalleryController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.datamaster.gallery.form', [
-            'back' => Str::contains(url()->previous(), ['gallery/tambah', 'gallery/edit'])? '/gallery': url()->previous(),
+        return view('backend.pages.datamaster.gallery.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/gallery/tambah', 'admin-area/gallery/edit'])? '/admin-area/gallery': url()->previous(),
             'aksi' => 'Tambah'
         ]);
     }
@@ -64,7 +62,7 @@ class GalleryController extends Controller
             $data->gallery_gambar = '/uploads/gallery/'.$nama_file;
             $data->sembunyikan = $req->get('sembunyikan')?: 0;
             $data->save();
-            return redirect($req->get('redirect')? $req->get('redirect'): 'gallery');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/gallery');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

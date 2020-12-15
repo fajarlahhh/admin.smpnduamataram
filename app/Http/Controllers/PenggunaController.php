@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pegawai;
 use App\Models\Pengguna;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Validator;
 
 class PenggunaController extends Controller
 {
@@ -25,7 +22,7 @@ class PenggunaController extends Controller
 	{
         $data = Pengguna::where('pengguna_id', 'like', '%'.$req->cari.'%')->where('pengguna_nama', 'like', '%'.$req->cari.'%')->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.pengguna.index', [
+        return view('backend.pages.pengguna.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari
@@ -35,8 +32,8 @@ class PenggunaController extends Controller
 
 	public function tambah()
 	{
-        return view('pages.pengguna.form', [
-            'back' => Str::contains(url()->previous(), ['pengguna/tambah', 'pengguna/edit'])? '/pengguna': url()->previous(),
+        return view('backend.pages.pengguna.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/pengguna/tambah', 'admin-area/pengguna/edit'])? '/admin-area/pengguna': url()->previous(),
             'aksi' => 'Tambah'
         ]);
 	}
@@ -68,7 +65,7 @@ class PenggunaController extends Controller
                     $pengguna->save();
                 });
             }
-			return redirect($req->get('redirect')? $req->get('redirect'): 'pengguna');
+			return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/pengguna');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
 		}
@@ -76,39 +73,33 @@ class PenggunaController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.pengguna.form', [
+        return view('backend.pages.pengguna.form', [
             'data' => Pengguna::findOrFail($req->id),
-            'back' => Str::contains(url()->previous(), 'pengguna/edit')? '/pengguna': url()->previous(),
+            'back' => Str::contains(url()->previous(), 'admin-area/pengguna/edit')? '/admin-area/pengguna': url()->previous(),
             'aksi' => 'Edit'
         ]);
 	}
 
-	public function ganti_sandi($value='')
-	{
-        return view('includes.component.modal-password');
-    }
-
-	public function do_ganti_sandi(Request $req)
+	public function ganti_sandi(Request $req)
 	{
         $req->validate([
             'pengguna_sandi_baru' => 'required',
             'pengguna_sandi_lama' => 'required',
         ]);
-
 		try{
 			$pengguna = Pengguna::findOrFail(Auth::id());
 			if($pengguna){
 				if(!Hash::check($req->get('pengguna_sandi_lama'), $pengguna->pengguna_sandi)){
-                    return redirect()->back()->withError('Kata sandi lama salah');
+                    return redirect()->back()->withErrors('Ganti Kata Sandi Gagal. Kata sandi lama salah');
 				}
 			}else{
-				return redirect()->back()->withError('Data pengguna tidak ditemukan');
+				return redirect()->back()->withErrors('Ganti Kata Sandi Gagal. Data pengguna tidak ditemukan');
 			}
 			$pengguna->pengguna_sandi = Hash::make($req->get('pengguna_sandi_baru'));
 			$pengguna->save();
 			return redirect()->back();
 		}catch(\Exception $e){
-			return redirect()->back()->withError('Ganti Sandi Gagal. '. $e->getMessage());
+			return redirect()->back()->withErrors('Ganti Kata Sandi Gagal. '. $e->getMessage());
 		}
 	}
 

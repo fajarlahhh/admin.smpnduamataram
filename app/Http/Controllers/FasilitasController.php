@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Fasilitas;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\KategoriFasilitas;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class FasilitasController extends Controller
@@ -18,7 +16,7 @@ class FasilitasController extends Controller
             $q->where('fasilitas_judul', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.datasekolah.fasilitas.index', [
+        return view('backend.pages.datasekolah.fasilitas.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,8 +25,8 @@ class FasilitasController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.datasekolah.fasilitas.form', [
-            'back' => Str::contains(url()->previous(), ['fasilitas/tambah', 'fasilitas/edit'])? '/fasilitas': url()->previous(),
+        return view('backend.pages.datasekolah.fasilitas.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/fasilitas/tambah', 'admin-area/fasilitas/edit'])? '/admin-area/fasilitas': url()->previous(),
             'aksi' => 'Tambah',
         ]);
     }
@@ -51,7 +49,7 @@ class FasilitasController extends Controller
             $data->fasilitas_kategori = $req->get('fasilitas_kategori');
             $data->fasilitas_gambar = '/uploads/fasilitas/'.$nama_file;
             $data->save();
-            return redirect($req->get('redirect')? $req->get('redirect'): 'fasilitas');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/fasilitas');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

@@ -17,7 +17,7 @@ class LoginController extends Controller
 
         $remember = ($req->remember == 'on') ? true : false;
         if (Auth::attempt(['pengguna_id' => $req->uid, 'password' => $req->password], $remember)) {
-            return redirect()->intended('dashboard');
+            return redirect()->intended('admin-area');
         }
         return redirect()->back()->withInput()->withErrors('ID atau Password Salah !!!');
     }

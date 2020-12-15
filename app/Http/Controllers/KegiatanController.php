@@ -6,7 +6,6 @@ use App\Models\Kegiatan;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\KategoriKegiatan;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class KegiatanController extends Controller
@@ -18,7 +17,7 @@ class KegiatanController extends Controller
             $q->where('kegiatan_nama', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.kegiatan.index', [
+        return view('backend.pages.kegiatan.data.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,8 +26,8 @@ class KegiatanController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.kegiatan.form', [
-            'back' => Str::contains(url()->previous(), ['kegiatan/tambah', 'kegiatan/edit'])? '/kegiatan': url()->previous(),
+        return view('backend.pages.kegiatan.data.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/kegiatan/tambah', 'admin-area/kegiatan/edit'])? '/admin-area/kegiatan': url()->previous(),
             'kategori' => KategoriKegiatan::all(),
             'aksi' => 'Tambah'
         ]);
@@ -69,7 +68,7 @@ class KegiatanController extends Controller
                 $data->kategori_kegiatan_id = $req->get('kategori_kegiatan_id');
                 $data->save();
             }
-            return redirect($req->get('redirect')? $req->get('redirect'): 'kegiatan');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/kegiatan');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }
@@ -77,9 +76,9 @@ class KegiatanController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.kegiatan.form', [
+        return view('backend.pages.kegiatan.data.form', [
             'data' => Kegiatan::findOrFail($req->get('id')),
-            'back' => Str::contains(url()->previous(), ['kegiatan/tambah', 'kegiatan/edit'])? '/kegiatan': url()->previous(),
+            'back' => Str::contains(url()->previous(), ['admin-area/kegiatan/tambah', 'admin-area/kegiatan/edit'])? '/admin-area/kegiatan': url()->previous(),
             'kategori' => KategoriKegiatan::all(),
             'aksi' => 'Edit'
         ]);
