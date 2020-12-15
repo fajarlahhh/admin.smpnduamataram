@@ -1,8 +1,9 @@
-@extends('pages.main')
+@extends('backend.pages.main')
 
 @section('title', ' | '.$aksi.' Tata Usaha')
 
 @section('page')
+<li class="breadcrumb-item">Profil</li>
 <li class="breadcrumb-item">Tata Usaha</li>
 <li class="breadcrumb-item active">{{ $aksi }} Tata Usaha</li>
 @endsection
@@ -61,7 +62,6 @@
                                     @if ($aksi == 'Edit')
                                     <a href="{{ $data->tata_usaha_foto }}" target="_blank">Foto Lama</a>
                                     @endif
-                                    @include('includes.component.error')
                                 </div>
                             </div>
                         </div>

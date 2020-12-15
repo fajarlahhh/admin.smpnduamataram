@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\StrukturOrganisasi;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\KategoriStrukturOrganisasi;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class StrukturorganisasiController extends Controller
@@ -18,7 +16,7 @@ class StrukturorganisasiController extends Controller
             $q->where('struktur_organisasi_pejabat', 'like', '%'.$req->cari.'%')->where('struktur_organisasi_jabatan', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.profil.strukturorganisasi.index', [
+        return view('backend.pages.profil.strukturorganisasi.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,8 +25,8 @@ class StrukturorganisasiController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.profil.strukturorganisasi.form', [
-            'back' => Str::contains(url()->previous(), ['strukturorganisasi/tambah', 'strukturorganisasi/edit'])? '/strukturorganisasi': url()->previous(),
+        return view('backend.pages.profil.strukturorganisasi.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/strukturorganisasi/tambah', 'admin-area/strukturorganisasi/edit'])? '/admin-area/strukturorganisasi': url()->previous(),
             'jabatan' => [
                 'Kepala Sekolah',
                 'Kepala Komite',
@@ -85,7 +83,7 @@ class StrukturorganisasiController extends Controller
                 $data->struktur_organisasi_foto = '/uploads/strukturorganisasi/'.$nama_file;
                 $data->save();
             }
-            return redirect($req->get('redirect')? $req->get('redirect'): 'strukturorganisasi');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/strukturorganisasi');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }
@@ -93,9 +91,9 @@ class StrukturorganisasiController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.profil.strukturorganisasi.form', [
+        return view('backend.pages.profil.strukturorganisasi.form', [
             'data' => StrukturOrganisasi::findOrFail($req->get('id')),
-            'back' => Str::contains(url()->previous(), ['strukturorganisasi/tambah', 'strukturorganisasi/edit'])? '/strukturorganisasi': url()->previous(),
+            'back' => Str::contains(url()->previous(), ['admin-area/strukturorganisasi/tambah', 'admin-area/strukturorganisasi/edit'])? '/admin-area/strukturorganisasi': url()->previous(),
             'jabatan' => [
                 'Kepala Sekolah',
                 'Kepala Komite',

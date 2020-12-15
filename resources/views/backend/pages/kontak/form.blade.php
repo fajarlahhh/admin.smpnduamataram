@@ -29,7 +29,7 @@
                                     <div class="form-group">
                                         <textarea class="textarea" name="halaman_uraian">{{ old('halaman_uraian')? old('halaman_uraian'): ($data ? $data->halaman_uraian: "") }}</textarea>
                                     </div>
-                                    @include('backend.includes.component.error')
+
                                 </div>
                             </div>
                         </div>

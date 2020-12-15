@@ -12,7 +12,7 @@ class VisimisiController extends Controller
     //
 	public function index(Request $req)
 	{
-        return view('pages.profil.visimisi.form', [
+        return view('backend.pages.profil.visimisi.form', [
             'data' => Profil::where('profil_jenis', 'Visi Misi')->get()->first(),
             'aksi' => 'Tambah'
         ]);
@@ -48,7 +48,7 @@ class VisimisiController extends Controller
             $data->profil_uraian = $req->get('profil_uraian');
             $data->profil_jenis = 'Visi Misi';
             $data->save();
-            return redirect('visimisi');
+            return redirect('admin-area/visimisi');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

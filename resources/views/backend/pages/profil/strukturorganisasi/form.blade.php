@@ -1,10 +1,11 @@
-@extends('pages.main')
+@extends('backend.pages.main')
 
 @section('title', ' | '.$aksi.' Struktur Organisasi')
 
 @section('page')
+<li class="breadcrumb-item">Profil</li>
 <li class="breadcrumb-item">Struktur Organisasi</li>
-<li class="breadcrumb-item active">{{ $aksi }} Struktur Organisasi</li>
+<li class="breadcrumb-item active">{{ $aksi }} Data</li>
 @endsection
 
 @section('header')
@@ -65,7 +66,6 @@
                                     @if ($aksi == 'Edit')
                                     <a href="{{ $data->struktur_organisasi_foto }}" target="_blank">Foto Lama</a>
                                     @endif
-                                    @include('includes.component.error')
                                 </div>
                             </div>
                         </div>

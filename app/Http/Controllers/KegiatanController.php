@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\File;
 class KegiatanController extends Controller
 {
     //
+    public function frontend(Request $req)
+    {
+        return view('frontend.pages.kegiatan.index', [
+            'kategori' => KategoriKegiatan::all(),
+            'data' => Kegiatan::orderBy('kegiatan_id')->get()
+        ]);
+    }
+
     public function index(Request $req)
 	{
         $data = Kegiatan::with('kategori')->where(function($q) use ($req){

@@ -31,7 +31,7 @@ return [
 			'title' => 'Kalender Akadmik'
         ]]
 	],[
-		'icon' => 'fas fa-university',
+		'icon' => 'fas fa-newspaper',
 		'title' => 'Berita',
 		'url' => '#',
 		'caret' => true,
@@ -111,27 +111,30 @@ return [
 			'url' => '/admin-area/kepalasekolah',
 			'title' => 'Kepala Sekolah'
         ],[
-			'url' => '/admin-area/sejarahsekolah',
-			'title' => 'Sejarah Sekolah'
-		],[
-			'url' => '/admin-area/visimisi',
-			'title' => 'Visi Misi'
-        ],[
 			'url' => '/admin-area/komitesekolah',
 			'title' => 'Komite Sekolah'
+		],[
+			'url' => '/admin-area/sejarahsekolah',
+			'title' => 'Sejarah Sekolah'
 		],[
 			'url' => '/admin-area/strukturorganisasi',
 			'title' => 'Struktur Organisasi'
         ],[
 			'url' => '/admin-area/tatausaha',
 			'title' => 'Tata Usaha'
-		]]
+		],[
+			'url' => '/admin-area/visimisi',
+			'title' => 'Visi Misi'
+        ]]
 	],[
 		'icon' => 'fas fa-graduation-cap',
 		'title' => 'Ruang Belajar',
 		'url' => '#',
 		'caret' => true,
 		'sub_menu' => [[
+            'title' => 'Informasi',
+            'url' => '/admin-area/informasi'
+        ],[
             'title' => 'Jadwal Belajar',
             'url' => '/admin-area/jadwalbelajar'
         ],[
@@ -140,9 +143,6 @@ return [
         ],[
             'title' => 'Video Ruang Belajar',
             'url' => '/admin-area/video'
-        ],[
-            'title' => 'Informasi',
-            'url' => '/admin-area/informasi'
         ]]
 	]]
 ];

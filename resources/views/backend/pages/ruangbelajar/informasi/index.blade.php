@@ -1,4 +1,4 @@
-@extends('pages.main')
+@extends('backend.pages.main')
 
 @section('title', ' | Informasi')
 
@@ -18,9 +18,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/informasi/tambah" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="/admin-area/informasi/tambah" class="btn btn-sm btn-primary">Tambah</a>
                         <div class="card-tools">
-                            <form action="/informasi" method="GET">
+                            <form action="/admin-area/informasi" method="GET">
                                 <div class="input-group input-group" style="width: 150px;">
                                     <input type="text" class="form-control float-right" value="{{ $cari }}" name="cari" placeholder="Search">
                                     <div class="input-group-append">
@@ -90,7 +90,7 @@
                 }
             });
             $.ajax({
-                url: "/informasi/hapus",
+                url: "/admin-area/informasi/hapus",
                 type: "POST",
                 data: {
                     "_method": 'DELETE',

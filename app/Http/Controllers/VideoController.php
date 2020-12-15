@@ -15,7 +15,7 @@ class VideoController extends Controller
             $q->where('video_judul', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.ruangbelajar.video.index', [
+        return view('backend.pages.ruangbelajar.video.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -24,8 +24,8 @@ class VideoController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.ruangbelajar.video.form', [
-            'back' => Str::contains(url()->previous(), ['video/tambah', 'video/edit'])? '/video': url()->previous(),
+        return view('backend.pages.ruangbelajar.video.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/video/tambah', 'admin-area/video/edit'])? '/admin-area/video': url()->previous(),
             'kelas' => ['VII', 'VIII', 'IX'],
             'aksi' => 'Tambah'
         ]);
@@ -43,7 +43,7 @@ class VideoController extends Controller
             $data->video_uraian = $req->get('video_uraian');
             $data->video_link = $req->get('video_link');
             $data->save();
-            return redirect($req->get('redirect')? $req->get('redirect'): 'video');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/video');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

@@ -1,0 +1,68 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 18/04/2019 05:37
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff2") format("woff2"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-add:before { content: "\f100"; }
+.flaticon-percentage:before { content: "\f101"; }
+.flaticon-next:before { content: "\f102"; }
+.flaticon-right-upper-coner:before { content: "\f103"; }
+.flaticon-zoom:before { content: "\f104"; }
+.flaticon-back:before { content: "\f105"; }
+.flaticon-arrow:before { content: "\f106"; }
+.flaticon-add-1:before { content: "\f107"; }
+.flaticon-substract:before { content: "\f108"; }
+.flaticon-leaflet:before { content: "\f109"; }
+.flaticon-play-button:before { content: "\f10a"; }
+.flaticon-car:before { content: "\f10b"; }
+.flaticon-architecture-and-city:before { content: "\f10c"; }
+.flaticon-question:before { content: "\f10d"; }
+    
+    $font-Flaticon-add: "\f100";
+    $font-Flaticon-percentage: "\f101";
+    $font-Flaticon-next: "\f102";
+    $font-Flaticon-right-upper-coner: "\f103";
+    $font-Flaticon-zoom: "\f104";
+    $font-Flaticon-back: "\f105";
+    $font-Flaticon-arrow: "\f106";
+    $font-Flaticon-add-1: "\f107";
+    $font-Flaticon-substract: "\f108";
+    $font-Flaticon-leaflet: "\f109";
+    $font-Flaticon-play-button: "\f10a";
+    $font-Flaticon-car: "\f10b";
+    $font-Flaticon-architecture-and-city: "\f10c";
+    $font-Flaticon-question: "\f10d";

@@ -1,4 +1,4 @@
-@extends('pages.main')
+@extends('backend.pages.main')
 
 @section('title', ' | Video Ruang Belajar')
 
@@ -18,9 +18,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/video/tambah" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="/admin-area/video/tambah" class="btn btn-sm btn-primary">Tambah</a>
                         <div class="card-tools">
-                            <form action="/video" method="GET">
+                            <form action="/admin-area/video" method="GET">
                                 <div class="input-group input-group" style="width: 150px;">
                                     <input type="text" class="form-control float-right" value="{{ $cari }}" name="cari" placeholder="Search">
                                     <div class="input-group-append">

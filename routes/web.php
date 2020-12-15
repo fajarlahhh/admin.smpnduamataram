@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\EkskulController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HalamanController;
 use App\Http\Controllers\PostingController;
@@ -18,6 +20,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\TatausahaController;
 use App\Http\Controllers\PesertadidikController;
+use App\Http\Controllers\RuangbelajarController;
 use App\Http\Controllers\KepalasekolahController;
 use App\Http\Controllers\KomitesekolahController;
 use App\Http\Controllers\KategoriberitaController;
@@ -230,3 +233,28 @@ Route::group(['prefix' => 'admin-area'], function () {
         });
     });
 });
+
+Route::get('/', [DashboardController::class, 'frontend']);
+Route::get('/profilkepsek', [ProfilController::class, 'profilkepsek']);
+Route::get('/sejarah', [ProfilController::class, 'sejarah']);
+Route::get('/visimisi', [ProfilController::class, 'visimisi']);
+Route::get('/komite', [ProfilController::class, 'komite']);
+Route::get('/kalender', [ProfilController::class, 'kalender']);
+Route::get('/tu', [ProfilController::class, 'tu']);
+Route::get('/struktur', [ProfilController::class, 'struktur']);
+Route::get('/berita', [BeritaController::class, 'frontend']);
+Route::get('/prestasi', [PrestasiController::class, 'frontend']);
+Route::get('/ekskul', [EkskulController::class, 'frontend']);
+Route::get('/kegiatan', [KegiatanController::class, 'frontend']);
+Route::get('/kontak', [KontakController::class, 'frontend']);
+Route::get('/gurupns', [DatasekolahController::class, 'gurupns']);
+Route::get('/guruhonorer', [DatasekolahController::class, 'guruhonorer']);
+Route::get('/kelasvii', [DatasekolahController::class, 'kelasvii']);
+Route::get('/kelasviii', [DatasekolahController::class, 'kelasviii']);
+Route::get('/kelasix', [DatasekolahController::class, 'kelasix']);
+Route::get('/sarpras', [DataController::class, 'sarpras']);
+Route::get('/denah', [DataController::class, 'denah']);
+Route::get('/jadwal', [RuangbelajarController::class, 'jadwal']);
+Route::get('/modul/{kelas}', [RuangbelajarController::class, 'modul']);
+Route::get('/video/{kelas}', [RuangbelajarController::class, 'video']);
+Route::get('/informasi', [RuangbelajarController::class, 'informasi']);

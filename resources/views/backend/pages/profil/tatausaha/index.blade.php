@@ -1,8 +1,9 @@
-@extends('pages.main')
+@extends('backend.pages.main')
 
 @section('title', ' | Tata Usaha')
 
 @section('page')
+<li class="breadcrumb-item">Profil</li>
 <li class="breadcrumb-item active">Tata Usaha</li>
 @endsection
 
@@ -17,9 +18,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/tatausaha/tambah" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="/admin-area/tatausaha/tambah" class="btn btn-sm btn-primary">Tambah</a>
                         <div class="card-tools">
-                            <form action="/tatausaha" method="GET">
+                            <form action="/admin-area/tatausaha" method="GET">
                                 <div class="input-group input-group" style="width: 150px;">
                                     <input type="text" class="form-control float-right" value="{{ $cari }}" name="cari" placeholder="Search">
                                     <div class="input-group-append">
@@ -93,7 +94,7 @@
                 }
             });
             $.ajax({
-                url: "/tatausaha/hapus",
+                url: "/admin-area/tatausaha/hapus",
                 type: "POST",
                 data: {
                     "_method": 'DELETE',

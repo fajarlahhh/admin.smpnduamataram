@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\File;
 class EkskulController extends Controller
 {
     //
+    public function frontend(Request $req)
+    {
+        return view('frontend.pages.ekskul.index', [
+            'data' => Ekskul::orderBy('ekskul_id')->get()
+        ]);
+    }
+
     public function index(Request $req)
 	{
         $data = Ekskul::where(function($q) use ($req){

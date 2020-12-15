@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Posting;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\KategoriPosting;
 use Illuminate\Support\Facades\File;
 
 class PostingController extends Controller
@@ -17,7 +16,7 @@ class PostingController extends Controller
             $q->where('posting_judul', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.ruangbelajar.informasi.index', [
+        return view('backend.pages.ruangbelajar.informasi.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -30,7 +29,7 @@ class PostingController extends Controller
             $q->where('posting_judul', 'like', '%'.$req->cari.'%');
         })->where('posting_jenis', 'modulbelajar')->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.ruangbelajar.modulbelajar.index', [
+        return view('backend.pages.ruangbelajar.modulbelajar.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -43,7 +42,7 @@ class PostingController extends Controller
             $q->where('posting_judul', 'like', '%'.$req->cari.'%');
         })->where('posting_jenis', 'jadwalbelajar')->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.ruangbelajar.jadwalbelajar.index', [
+        return view('backend.pages.ruangbelajar.jadwalbelajar.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -52,7 +51,7 @@ class PostingController extends Controller
 
 	public function tambah_informasi(Request $req)
 	{
-        return view('pages.ruangbelajar.informasi.form', [
+        return view('backend.pages.ruangbelajar.informasi.form', [
             'back' => url()->previous(),
             'aksi' => 'Tambah'
         ]);
@@ -60,7 +59,7 @@ class PostingController extends Controller
 
 	public function edit_informasi(Request $req)
 	{
-        return view('pages.ruangbelajar.informasi.form', [
+        return view('backend.pages.ruangbelajar.informasi.form', [
             'data' => Posting::findOrFail($req->get('id')),
             'back' => url()->previous(),
             'aksi' => 'Edit'
@@ -69,7 +68,7 @@ class PostingController extends Controller
 
 	public function tambah_jadwalbelajar(Request $req)
 	{
-        return view('pages.ruangbelajar.jadwalbelajar.form', [
+        return view('backend.pages.ruangbelajar.jadwalbelajar.form', [
             'back' => url()->previous(),
             'aksi' => 'Tambah'
         ]);
@@ -77,7 +76,7 @@ class PostingController extends Controller
 
 	public function edit_jadwalbelajar(Request $req)
 	{
-        return view('pages.ruangbelajar.jadwalbelajar.form', [
+        return view('backend.pages.ruangbelajar.jadwalbelajar.form', [
             'data' => Posting::findOrFail($req->get('id')),
             'back' => url()->previous(),
             'aksi' => 'Edit'
@@ -86,7 +85,7 @@ class PostingController extends Controller
 
 	public function tambah_modulbelajar(Request $req)
 	{
-        return view('pages.ruangbelajar.modulbelajar.form', [
+        return view('backend.pages.ruangbelajar.modulbelajar.form', [
             'back' => url()->previous(),
             'kelas' => ['VII', 'VIII', 'IX'],
             'aksi' => 'Tambah'
@@ -95,7 +94,7 @@ class PostingController extends Controller
 
 	public function edit_modulbelajar(Request $req)
 	{
-        return view('pages.ruangbelajar.modulbelajar.form', [
+        return view('backend.pages.ruangbelajar.modulbelajar.form', [
             'data' => Posting::findOrFail($req->get('id')),
             'kelas' => ['VII', 'VIII', 'IX'],
             'back' => url()->previous(),
@@ -144,7 +143,7 @@ class PostingController extends Controller
                 $data->posting_kriteria = $req->get('posting_kriteria');
                 $data->save();
             }
-            return redirect($req->get('redirect')? $req->get('redirect'): 'posting');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'dashboard');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

@@ -1,9 +1,9 @@
-@extends('pages.main')
+@extends('backend.pages.main')
 
 @section('title', ' | '.$aksi.' Informasi')
 
 @push('css')
-<link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
+<link rel="stylesheet" href="/assets/backend/plugins/summernote/summernote-bs4.css">
 @endpush
 
 @section('page')
@@ -47,7 +47,6 @@
                                     @if ($aksi == 'Edit')
                                     <a href="{{ $data->posting_file }}" target="_blank">File Lama</a>
                                     @endif
-                                    @include('includes.component.error')
                                 </div>
                             </div>
                         </div>
@@ -65,11 +64,21 @@
 @endsection
 
 @push('scripts')
-<script src="/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="/assets/backend/plugins/summernote/summernote-bs4.min.js"></script>
 <script>
     $(function () {
         $('.textarea').summernote({
-            height: 400
+            height: 400,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']],
+            ]
         })
     })
 </script>

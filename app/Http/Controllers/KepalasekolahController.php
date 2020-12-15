@@ -12,7 +12,7 @@ class KepalasekolahController extends Controller
     //
 	public function index(Request $req)
 	{
-        return view('pages.profil.kepalasekolah.form', [
+        return view('backend.pages.profil.kepalasekolah.form', [
             'data' => Profil::where('profil_jenis', 'Kepala Sekolah')->get()->first(),
             'aksi' => 'Tambah'
         ]);
@@ -48,7 +48,7 @@ class KepalasekolahController extends Controller
             $data->profil_uraian = $req->get('profil_uraian');
             $data->profil_jenis = 'Kepala Sekolah';
             $data->save();
-            return redirect('kepalasekolah');
+            return redirect('admin-area/kepalasekolah');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

@@ -12,7 +12,7 @@ class SejarahsekolahController extends Controller
     //
 	public function index(Request $req)
 	{
-        return view('pages.profil.sejarahsekolah.form', [
+        return view('backend.pages.profil.sejarahsekolah.form', [
             'data' => Profil::where('profil_jenis', 'Sejarah Sekolah')->get()->first(),
             'aksi' => 'Tambah'
         ]);
@@ -48,7 +48,7 @@ class SejarahsekolahController extends Controller
             $data->profil_uraian = $req->get('profil_uraian');
             $data->profil_jenis = 'Sejarah Sekolah';
             $data->save();
-            return redirect('sejarahsekolah');
+            return redirect('admin-area/sejarahsekolah');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

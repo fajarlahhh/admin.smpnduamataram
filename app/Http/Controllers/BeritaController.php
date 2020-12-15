@@ -12,6 +12,32 @@ use Illuminate\Support\Facades\File;
 class BeritaController extends Controller
 {
     //
+    public function frontend(Request $req)
+    {
+        if ($req->id) {
+            return view('pages.berita.baca', [
+                'data' => Berita::with('kategori')->where('berita_id', $req->id)->first(),
+                'terbaru' => Berita::with('kategori')->orderBy('created_at', 'desc')->limit(3)->get(),
+                'kategori' => KategoriBerita::with('berita')->get()
+            ]);
+        }else if ($req->kategori) {
+            return view('pages.berita.index', [
+                'data' => Berita::with('kategori')->whereHas('kategori', function ($q) use($req)
+                {
+                    $q->where('kategori_berita_id', $req->kategori);
+                })->first()
+            ]);
+        }else if ($req->cari) {
+            return view('pages.berita.index', [
+                'data' => Berita::with('kategori')->where('berita_judul', 'like', '%'.$req->cari.'%')->get()
+            ]);
+        }else{
+            return view('pages.berita.index', [
+                'data' => Berita::with('kategori')->orderBy('created_at', 'desc')->limit(6)->get()
+            ]);
+        }
+    }
+
     public function index(Request $req)
 	{
         $data = Berita::with('kategori')->where(function($q) use ($req){

@@ -1,13 +1,14 @@
-@extends('pages.main')
+@extends('backend.pages.main')
 
 @section('title', ' | Komite Sekolah')
 
 @push('css')
-<link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
+<link rel="stylesheet" href="/assets/backend/plugins/summernote/summernote-bs4.css">
 @endpush
 
 @section('page')
-<li class="breadcrumb-item">Komite Sekolah</li>
+<li class="breadcrumb-item">Profil</li>
+<li class="breadcrumb-item active">Komite Sekolah</li>
 @endsection
 
 @section('header')
@@ -35,7 +36,6 @@
                                     @if ($data)
                                     <a href="{{ $data->profil_gambar }}" target="_blank">Gambar Lama</a>
                                     @endif
-                                    @include('includes.component.error')
                                 </div>
                             </div>
                         </div>
@@ -51,11 +51,21 @@
 @endsection
 
 @push('scripts')
-<script src="/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="/assets/backend/plugins/summernote/summernote-bs4.min.js"></script>
 <script>
     $(function () {
         $('.textarea').summernote({
-            height: 400
+            height: 400,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']],
+            ]
         })
     })
 </script>

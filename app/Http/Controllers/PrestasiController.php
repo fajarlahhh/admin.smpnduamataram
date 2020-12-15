@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\File;
 class PrestasiController extends Controller
 {
     //
+    public function frontend(Request $req)
+    {
+        return view('frontend.pages.prestasi.index', [
+            'data' => Prestasi::orderBy('prestasi_id')->get()
+        ]);
+    }
+
     public function index(Request $req)
 	{
         $data = Prestasi::where(function($q) use ($req){

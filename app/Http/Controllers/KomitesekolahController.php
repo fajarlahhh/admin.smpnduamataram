@@ -12,7 +12,7 @@ class KomitesekolahController extends Controller
     //
 	public function index(Request $req)
 	{
-        return view('pages.profil.komitesekolah.form', [
+        return view('backend.pages.profil.komitesekolah.form', [
             'data' => Profil::where('profil_jenis', 'Komite Sekolah')->get()->first(),
             'aksi' => 'Tambah'
         ]);
@@ -48,7 +48,7 @@ class KomitesekolahController extends Controller
             $data->profil_uraian = $req->get('profil_uraian');
             $data->profil_jenis = 'Komite Sekolah';
             $data->save();
-            return redirect('komitesekolah');
+            return redirect('admin-area/komitesekolah');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }

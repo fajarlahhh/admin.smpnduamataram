@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\TataUsaha;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\KategoriTataUsaha;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class TatausahaController extends Controller
@@ -18,7 +16,7 @@ class TatausahaController extends Controller
             $q->where('tata_usaha_pejabat', 'like', '%'.$req->cari.'%')->where('tata_usaha_jabatan', 'like', '%'.$req->cari.'%');
         })->paginate(10);
         $data->appends([$req->cari]);
-        return view('pages.profil.tatausaha.index', [
+        return view('backend.pages.profil.tatausaha.index', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10,
             'cari' => $req->cari,
@@ -27,8 +25,8 @@ class TatausahaController extends Controller
 
 	public function tambah(Request $req)
 	{
-        return view('pages.profil.tatausaha.form', [
-            'back' => Str::contains(url()->previous(), ['tatausaha/tambah', 'tatausaha/edit'])? '/tatausaha': url()->previous(),
+        return view('backend.pages.profil.tatausaha.form', [
+            'back' => Str::contains(url()->previous(), ['admin-area/tatausaha/tambah', 'admin-area/tatausaha/edit'])? '/admin-area/tatausaha': url()->previous(),
             'jabatan' => [
                 'Kepala Tata Usaha Sekolah',
                 'Urusan Kepegawaian & Persuratan',
@@ -79,7 +77,7 @@ class TatausahaController extends Controller
                 $data->tata_usaha_foto = '/uploads/tatausaha/'.$nama_file;
                 $data->save();
             }
-            return redirect($req->get('redirect')? $req->get('redirect'): 'tatausaha');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'admin-area/tatausaha');
 		}catch(\Exception $e){
             return redirect()->back()->withInput()->withErrors('Gagal Menyimpan Data. '.$e->getMessage());
         }
@@ -87,9 +85,9 @@ class TatausahaController extends Controller
 
 	public function edit(Request $req)
 	{
-        return view('pages.profil.tatausaha.form', [
+        return view('backend.pages.profil.tatausaha.form', [
             'data' => TataUsaha::findOrFail($req->get('id')),
-            'back' => Str::contains(url()->previous(), ['tatausaha/tambah', 'tatausaha/edit'])? '/tatausaha': url()->previous(),
+            'back' => Str::contains(url()->previous(), ['admin-area/tatausaha/tambah', 'admin-area/tatausaha/edit'])? '/admin-area/tatausaha': url()->previous(),
             'jabatan' => [
                 'Kepala Tata Usaha Sekolah',
                 'Urusan Kepegawaian & Persuratan',
