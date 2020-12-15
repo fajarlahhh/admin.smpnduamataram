@@ -40,8 +40,8 @@ use App\Http\Controllers\StrukturorganisasiController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout']);
+Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::group(['prefix' => 'admin-area'], function () {
     Route::group(['middleware' => ['auth']], function () {
