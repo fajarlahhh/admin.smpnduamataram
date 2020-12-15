@@ -8,7 +8,7 @@
                 <div class="single-footer-widget marbtm50">
                     <div class="contact-info-box">
                         <div class="footer-logo">
-                            <a href="index.html">
+                            <a href="/">
                                 <img src="assets/frontend/images/footer_logo.png" alt="Awesome Logo">
                             </a>
                         </div>
