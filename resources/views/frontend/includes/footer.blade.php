@@ -51,6 +51,22 @@
             <!--End single footer widget-->
             <!--Start single footer widget-->
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                <div class="single-footer-widget pdbtm50">
+                    <div class="title">
+                        <h3>Pembelajaran Online</h3>
+                    </div>
+                    <ul class="recent-news">
+                        <li>
+                            <a href="https://www.microsoft.com/id-id/microsoft-365/office-365"><img src="assets/frontend/images/footer/Microsoft_365_logo.png" alt="Awesome Image"></a>
+                        </li>
+                        <li>
+                            <a href="https://new.edmodo.com/"><img src="assets/frontend/images/footer/edmodo.png" alt="Awesome Image"></a>
+                        </li>
+                        <li>
+                            <a href="https://classroom.google.com/u/0/h"><img src="assets/frontend/images/footer/googleclassroom.png" alt="Awesome Image"></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <!--End single footer widget-->
             <!--Start single footer widget-->
