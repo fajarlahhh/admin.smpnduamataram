@@ -1,7 +1,7 @@
 
 
          <!-- Start Top Bar style3 -->
-         <section class="topbar-style3-area">
+        <section class="topbar-style3-area">
             <div class="container clearfix">
                 <div class="topbar-style3-content">
                     <div class="topbar-style3-left">
@@ -11,7 +11,7 @@
                     </div>
                     <div class="topbar-style3-right">
                         <ul class="clearfix">
-                            <strong>Be a good quality minded person</strong>
+                            <strong><a href="https://new.edmodo.com/">Edmodo</a> - <a href="https://www.microsoft.com/id-id/microsoft-365/office-365">Microsoft 365</a></strong>
                         </ul>
 
                     </div>
