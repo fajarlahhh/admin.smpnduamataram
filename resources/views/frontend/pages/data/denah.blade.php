@@ -22,7 +22,7 @@
 <!--Start Main project area-->
 <section class="main-project-area">
     <div class="container">
-        <img src="{!! $admin.$data->halaman_gambar !!}" alt="" width="100%">
+        <img src="{!! $data->halaman_gambar !!}" alt="" width="100%">
     </div>
 </section>
 <!--End Main project area-->

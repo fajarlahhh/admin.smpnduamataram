@@ -10,6 +10,28 @@ use App\Models\TenagaPendidik;
 class TenagaPendidikController extends Controller
 {
     //
+    public function pns(Request $req){
+        $data = Mapel::with('tenaga_pendidik')->whereHas('tenaga_pendidik', function ($q)
+        {
+            return $q->where('tenaga_pendidik_kriteria', 'PNS');
+        })->get();
+        return view('frontend.pages.datasekolah.gurupns', [
+            'data' => $data,
+            'i' => ($req->input('page', 1) - 1) * 10,
+        ]);
+    }
+
+    public function nonpns(Request $req){
+        $data = Mapel::with('tenaga_pendidik')->whereHas('tenaga_pendidik', function ($q)
+        {
+            return $q->where('tenaga_pendidik_kriteria', 'Non PNS');
+        })->get();
+        return view('frontend.pages.datasekolah.guruhonorer', [
+            'data' => $data,
+            'i' => ($req->input('page', 1) - 1) * 10,
+        ]);
+    }
+
     public function index(Request $req)
 	{
         $kriteria = $req->kriteria? $req->kriteria: 'semua';

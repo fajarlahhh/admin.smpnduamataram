@@ -36,7 +36,7 @@
                 <div class="single-project-style4">
                     <div class="img-holder">
                         <div class="inner">
-                            <img src="{{ $admin.$row->fasilitas_gambar }}" alt="Awesome Image">
+                            <img src="{{ $row->fasilitas_gambar }}" alt="Awesome Image">
                             <div class="overlay-box">
                                 <div class="box">
                                     <div class="link">

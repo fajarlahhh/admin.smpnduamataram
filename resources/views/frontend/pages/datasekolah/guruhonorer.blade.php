@@ -26,6 +26,7 @@
                                                 @foreach ($row->tenaga_pendidik as $guru)
                                                 <p>{{ $guru->tenaga_pendidik_nama }}<br>
                                                 NIP : {{ $guru->tenaga_pendidik_nip }}</p>
+                                                <hr>
                                                 @endforeach
                                             </div>
                                         </div>

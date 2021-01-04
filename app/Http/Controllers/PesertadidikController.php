@@ -10,6 +10,33 @@ use Illuminate\Support\Facades\File;
 class PesertadidikController extends Controller
 {
     //
+    public function kelasvii(Request $req)
+    {
+        $data = PesertaDidik::where('peserta_didik_kelas', 'VII')->get();
+        return view('frontend.pages.datasekolah.pesertadidik', [
+            'data' => $data,
+            'i' => ($req->input('page', 1) - 1) * 10
+        ]);
+    }
+
+    public function kelasviii(Request $req)
+    {
+        $data = PesertaDidik::where('peserta_didik_kelas', 'VII')->get();
+        return view('frontend.pages.datasekolah.pesertadidik', [
+            'data' => $data,
+            'i' => ($req->input('page', 1) - 1) * 10
+        ]);
+    }
+
+    public function kelasix(Request $req)
+    {
+        $data = PesertaDidik::where('peserta_didik_kelas', 'IX')->get();
+        return view('frontend.pages.datasekolah.pesertadidik', [
+            'data' => $data,
+            'i' => ($req->input('page', 1) - 1) * 10
+        ]);
+    }
+
     public function index(Request $req)
     {
         $kelas = $req->kelas? $req->kelas: 'VII';

@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="about-text">
                     <div class="sec-title">
-                        <div class="title">DAFTAR NAMA PESERTA DIDIK<br><span>KELAS {{ $kelas }} SMPN 2 Mataram</span></div>
+                        <div class="title">DAFTAR NAMA PESERTA DIDIK<br><span>KELAS {{ $data->first()->peserta_didik_kelas }} SMPN 2 Mataram</span></div>
                     </div>
                     <div class="inner-content">
                         <div class="row">
@@ -23,7 +23,7 @@
                                                 <h4>{{ $row->peserta_didik_kelas }}</h4>
                                             </div>
                                             <div class="accord-content">
-                                                <iframe height="500" width="100%" src="{{ $admin.$row->peserta_didik_file }}"></iframe>
+                                                <iframe height="500" width="100%" src="{{ $row->peserta_didik_file }}"></iframe>
                                             </div>
                                         </div>
                                         <!--End single accordion box-->
