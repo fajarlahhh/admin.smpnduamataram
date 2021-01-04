@@ -177,7 +177,7 @@
 
                                                  <li class="dropdown"><a href="#">Alumni</a>
                                                     <ul>
-                                                        <li><a href="#">Data Alumni</a></li>
+                                                        <li><a href="/alumni">Data Alumni</a></li>
 
                                                         <li><a href="#">e-Registration Alumni</a></li>
 

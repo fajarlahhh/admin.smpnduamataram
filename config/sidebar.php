@@ -66,6 +66,9 @@ return [
 		'url' => '#',
 		'caret' => true,
 		'sub_menu' => [[
+            'title' => 'Alumni',
+            'url' => '/admin-area/alumni'
+        ],[
             'title' => 'Denah Sekolah',
             'url' => '/admin-area/denahsekolah'
         ],[

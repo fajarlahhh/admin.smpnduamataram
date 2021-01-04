@@ -1,18 +1,19 @@
 @extends('backend.pages.main')
 
-@section('title', ' | '.$aksi.' Berita')
+@section('title', ' | '.$aksi.' Tenaga Pendidik')
 
 @push('css')
 <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
 @endpush
 
 @section('page')
-<li class="breadcrumb-item">Berita</li>
-<li class="breadcrumb-item active">{{ $aksi }} Berita</li>
+<li class="breadcrumb-item">Data Sekolah</li>
+<li class="breadcrumb-item">Tenaga Pendidik</li>
+<li class="breadcrumb-item active">{{ $aksi }} Tenaga Pendidik</li>
 @endsection
 
 @section('header')
-<h1 class="m-0 text-dark">{{ $aksi }} Berita</h1>
+<h1 class="m-0 text-dark">{{ $aksi }} Tenaga Pendidik</h1>
 @endsection
 
 @section('subcontent')

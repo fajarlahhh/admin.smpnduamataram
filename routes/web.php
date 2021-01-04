@@ -5,6 +5,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\EkskulController;
 use App\Http\Controllers\ProfilController;
@@ -110,6 +111,14 @@ Route::group(['prefix' => 'admin-area'], function () {
             Route::get('/edit', [PesertadidikController::class, 'edit'])->name('pesertadidik.edit');
             Route::post('/simpan', [PesertadidikController::class, 'simpan'])->name('pesertadidik.simpan');
             Route::delete('/hapus', [PesertadidikController::class, 'hapus']);
+        });
+
+        Route::prefix('alumni')->group(function () {
+            Route::get('/', [AlumniController::class, 'index'])->name('alumni');
+            Route::get('/tambah', [AlumniController::class, 'tambah'])->name('alumni.tambah');
+            Route::get('/edit', [AlumniController::class, 'edit'])->name('alumni.edit');
+            Route::post('/simpan', [AlumniController::class, 'simpan'])->name('alumni.simpan');
+            Route::delete('/hapus', [AlumniController::class, 'hapus']);
         });
 
         Route::prefix('carousel')->group(function () {
@@ -247,6 +256,7 @@ Route::get('/prestasi', [PrestasiController::class, 'frontend']);
 Route::get('/ekskul', [EkskulController::class, 'frontend']);
 Route::get('/kegiatan', [KegiatanController::class, 'frontend']);
 Route::get('/kontak', [KontakController::class, 'frontend']);
+Route::get('/alumni', [AlumniController::class, 'frontend']);
 Route::get('/gurupns', [TenagapendidikController::class, 'pns']);
 Route::get('/guruhonorer', [TenagapendidikController::class, 'nonpns']);
 Route::get('/kelasvii', [PesertadidikController::class, 'kelasvii']);

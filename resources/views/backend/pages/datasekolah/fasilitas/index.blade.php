@@ -3,6 +3,7 @@
 @section('title', ' | Sarana Prasarana')
 
 @section('page')
+<li class="breadcrumb-item">Data Sekolah</li>
 <li class="breadcrumb-item active">Sarana Prasarana</li>
 @endsection
 

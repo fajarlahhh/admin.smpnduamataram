@@ -3,6 +3,7 @@
 @section('title', ' | '.$aksi.' Sarana Prasarana')
 
 @section('page')
+<li class="breadcrumb-item">Data Sekolah</li>
 <li class="breadcrumb-item">Sarana Prasarana</li>
 <li class="breadcrumb-item active">{{ $aksi }} Sarana Prasarana</li>
 @endsection

@@ -1,14 +1,14 @@
 @extends('backend.pages.main')
 
-@section('title', ' | Peserta Didik')
+@section('title', ' | Alumni')
 
 @section('page')
 <li class="breadcrumb-item">Data Sekolah</li>
-<li class="breadcrumb-item active">Peserta Didik</li>
+<li class="breadcrumb-item active">Alumni</li>
 @endsection
 
 @section('header')
-<h1 class="m-0 text-dark">Peserta Didik</h1>
+<h1 class="m-0 text-dark">Alumni</h1>
 @endsection
 
 @section('subcontent')
@@ -18,15 +18,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/admin-area/pesertadidik/tambah" class="btn btn-sm btn-primary">Tambah</a>
+                        <a href="/admin-area/alumni/tambah" class="btn btn-sm btn-primary">Tambah</a>
                         <div class="card-tools">
-                            <form action="/admin-area/pesertadidik" method="GET">
+                            <form action="/admin-area/alumni" method="GET">
                                 <div class="input-group input-group" >
-                                    <select class="form-control selectpicker" name="kelas">
-                                        <option value="VII" {{ $kelas == 'VII'? 'selected': '' }}>VII</option>
-                                        <option value="VIII" {{ $kelas == 'VIII'? 'selected': '' }}>VIII</option>
-                                        <option value="IX" {{ $kelas == 'IX'? 'selected': '' }}>IX</option>
-                                    </select>
                                     <input type="text" class="form-control float-right" value="{{ $cari }}" name="cari" placeholder="Search">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -41,8 +36,7 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>Kelas</th>
-                                        <th>Nama Kelas</th>
+                                        <th>Keterangan</th>
                                         <th>File</th>
                                         <th></th>
                                     </tr>
@@ -51,14 +45,13 @@
                                     @foreach ($data as $index => $row)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $row->peserta_didik_kelas }}</td>
-                                        <td>{{ $row->peserta_didik_nama }}</td>
-                                        <td><a href="{{ $row->peserta_didik_file }}" target="_blank">File PDF</a></td>
+                                        <td>{{ $row->alumni_keterangan }}</td>
+                                        <td><a href="{{ $row->alumni_file }}" target="_blank">File PDF</a></td>
                                         <td class="text-right" nowrap>
                                             <div class="btn-group">
                                             </div>
                                             <div class="btn-group">
-                                                <a href="javascript:;" data-id="{{ $row->peserta_didik_id }}" data-no="{{ $i }}" class="btn-danger btn btn-hapus" > Hapus</a>
+                                                <a href="javascript:;" data-id="{{ $row->alumni_id }}" data-no="{{ $i }}" class="btn-danger btn btn-hapus" > Hapus</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -96,7 +89,7 @@
                 }
             });
             $.ajax({
-                url: "/admin-area/pesertadidik/hapus",
+                url: "/admin-area/alumni/hapus",
                 type: "POST",
                 data: {
                     "_method": 'DELETE',

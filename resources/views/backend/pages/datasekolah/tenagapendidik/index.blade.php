@@ -3,6 +3,7 @@
 @section('title', ' | Tenaga Pendidik')
 
 @section('page')
+<li class="breadcrumb-item">Data Sekolah</li>
 <li class="breadcrumb-item active">Tenaga Pendidik</li>
 @endsection
 

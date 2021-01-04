@@ -7,6 +7,7 @@
 @endpush
 
 @section('page')
+<li class="breadcrumb-item">Data Sekolah</li>
 <li class="breadcrumb-item">Peserta Didik</li>
 <li class="breadcrumb-item active">Tambah Peserta Didik</li>
 @endsection
