@@ -21,7 +21,7 @@ class PesertadidikController extends Controller
 
     public function kelasviii(Request $req)
     {
-        $data = PesertaDidik::where('peserta_didik_kelas', 'VII')->get();
+        $data = PesertaDidik::where('peserta_didik_kelas', 'VIII')->get();
         return view('frontend.pages.datasekolah.pesertadidik', [
             'data' => $data,
             'i' => ($req->input('page', 1) - 1) * 10
