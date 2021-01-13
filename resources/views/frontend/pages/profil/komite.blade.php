@@ -9,7 +9,7 @@
             <div class="col-xl-5 col-lg-5">
                 <div class="about-image-box">
                     <div class="inner-box">
-                        <img src="{{ $admin.$data->profil_gambar }}" alt="Awesome Image">
+                        <img src="{{ $data->profil_gambar }}" alt="Awesome Image">
                         <div class="overlay">
                             <div class="box">
 
