@@ -27,7 +27,7 @@
                                                 <br>
                                                 <div class="text-center">
 
-                                                <a href="{{ $admin.$row->posting_file }}" class="btn btn-primary">Download File</a>
+                                                <a href="{{ $row->posting_file }}" class="btn btn-primary">Download File</a>
                                                 </div>
                                             </div>
                                         </div>
