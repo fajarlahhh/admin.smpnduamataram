@@ -30,7 +30,7 @@
                 <div class="blog-post">
                     <div class="single-blog-post">
                         <div class="main-image-box">
-                            <img src="{{ $admin.$data->berita_gambar }}" alt="Awesome Image">
+                            <img src="{{ $data->berita_gambar }}" alt="Awesome Image">
                         </div>
                         <div class="top-text-box">
                             {!! $data->berita_isi !!}
@@ -69,7 +69,7 @@
                             @foreach ($terbaru as $row)
                             <li>
                                 <div class="img-holder">
-                                    <img src="{{ $admin.$row->berita_gambar }}" alt="Awesome Image">
+                                    <img src="{{ $row->berita_gambar }}" alt="Awesome Image">
                                     <div class="overlay-style-one">
                                         <div class="box">
                                             <div class="content">
