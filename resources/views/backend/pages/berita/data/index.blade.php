@@ -52,7 +52,7 @@
                                         <td><a href="{{ $row->berita_gambar }}" target="_blank">Gambar</a></td>
                                         <td class="text-nowrap">{{ $row->kategori? $row->kategori->kategori_berita_nama: '' }}</td>
                                         <td class="text-nowrap">{{ $row->berita_author }}</td>
-                                        <td class="text-nowrap">{{ $row->created_at }}</td>
+                                        <td class="text-nowrap">{!! $row->created_at !!}</td>
                                         <td class="text-right" nowrap>
                                             <div class="btn-group">
                                             </div>
